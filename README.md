@@ -11,8 +11,6 @@ Nico!!
 G-Money  
 Robert  
 
-
-
 ***
 ***After testing git commits using this readme, further edits are to be done in your specified branch***  
 ***Pull from the master branch to make your repository up to date before editing***  
