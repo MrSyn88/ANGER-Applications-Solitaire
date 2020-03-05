@@ -2,7 +2,7 @@
 
 Solitaire game using javafx
 
-## Test commits Y'all
+## Test commits  
 
 <!--- Two spaces after a line before pressing enter to do an actual new line and these weird lines to be a comment -Nico -->
 
