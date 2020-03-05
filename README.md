@@ -1,4 +1,4 @@
-# Anger-Applications-Solitaire
+# ANGER-Applications-Solitaire
 
 Solitaire game using javafx
 
