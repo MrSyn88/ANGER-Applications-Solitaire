@@ -1,4 +1,4 @@
-# Anger-Applications-Solitaire
+# ANGER-Applications-Solitaire
 
 Solitaire game using javafx
 
@@ -10,7 +10,8 @@ Put your name here to test your command line access:
 Andrew  
 Nico!!  
 G-Money  
-Robert  
+Robert    
+SPIDER  
 
 ***
 
