@@ -1,6 +1,6 @@
 package application;
 
-public class MainController extends Application{
+public class MainController{
     @FXML 
     private Label Title;
 }
