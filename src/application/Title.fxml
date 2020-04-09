@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Label alignment="CENTER" text="Solitaire" BorderPane.alignment="CENTER">
@@ -36,10 +35,10 @@
             <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="New Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="How to play" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="LeaderboardPush" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="NewGamePush" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="New Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="HTPPush" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="How to play" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="SettingsPush" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </center>
