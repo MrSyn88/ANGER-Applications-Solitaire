@@ -16,9 +16,9 @@ import javafx.scene.control.CheckBox;
 
 public class SettingsController {
 	@FXML
-	private ComboBox cardBackSelector;
+	private ComboBox<String> cardBackSelector;
 	@FXML
-	private ComboBox drawTypeSelector;
+	private ComboBox<String> drawTypeSelector;
 	@FXML
 	private Slider masterVolumeSlider;
 	@FXML
