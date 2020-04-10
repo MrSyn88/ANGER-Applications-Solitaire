@@ -2,6 +2,8 @@ package application;
 
 import javafx.fxml.FXML;
 
+import java.util.HashMap;
+
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Slider;
@@ -11,10 +13,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-public class SettingsController {
+public class SettingsController extends SuperController {
+	
 	@FXML
 	private ComboBox<String> cardBackSelector;
 	@FXML
@@ -33,6 +36,27 @@ public class SettingsController {
 	private CheckBox showTimeSelection;
 	@FXML
 	private ImageView cardBackPreview;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Button applySettingsButton;
+
+    @FXML
+    void applySetingsAndExit(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void applySettings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelSettings(ActionEvent event) {
+
+    }
 
 	// Event Listener on ComboBox[#cardBackSelector].onAction
 	@FXML
