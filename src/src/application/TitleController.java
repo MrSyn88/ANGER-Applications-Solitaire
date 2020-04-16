@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class TitleController extends SuperController {
 	}
 
 	@FXML
-	void callStartNewGame(ActionEvent event) {
+	void callStartNewGame(ActionEvent event) throws IOException {
 		// Load the mainController from the hashmap, then call the startNewGame method,
 		// passing the event
 		((MainController) this.getAppControllerMap().get("mainController")).startNewGame(event);
