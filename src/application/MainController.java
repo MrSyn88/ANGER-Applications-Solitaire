@@ -47,11 +47,7 @@ public class MainController extends SuperController {
 	@FXML
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
-		mainPane = FXMLLoader.load(getClass().getResource("Game.fxml"));// pane you are GOING TO
-        Scene scene = new Scene(mainPane);// pane you are GOING TO show
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
-        window.setScene(scene);
-        window.show();
+		mainPane.setCenter((BorderPane) getAppPaneMap().get("gameScreen"));
 
 	}
 	// Event Listener on MenuItem[#saveMenuItem].onAction

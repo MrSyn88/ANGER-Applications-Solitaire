@@ -45,17 +45,14 @@ public class SettingsController extends SuperController {
 
     @FXML
     void applySetingsAndExit(ActionEvent event) {
-
     }
     
     @FXML
     void applySettings(ActionEvent event) {
-
     }
 
     @FXML
     void cancelSettings(ActionEvent event) {
-
     }
 
 	// Event Listener on ComboBox[#cardBackSelector].onAction
