@@ -50,6 +50,11 @@ public class Main extends Application {
 			paneMap.put("settingsScreen", (GridPane) settingsLoader.load());
 			controllerMap.put("settingsController", settingsLoader.getController());
 			
+			FXMLLoader gameLoader = new FXMLLoader();
+			gameLoader.setLocation(getClass().getResource("Game.fxml"));
+			paneMap.put("gameScreen", (BorderPane) gameLoader.load());
+			//controllerMap.put("gameController", gameLoader.getController());
+			
 			//Allow each controller to access every other controller
 			for (SuperController currentControl: controllerMap.values()) {
 				currentControl.setAppControllerMap(controllerMap);
