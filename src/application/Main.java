@@ -54,15 +54,15 @@ public class Main extends Application {
 			FXMLLoader gameLoader = new FXMLLoader();
 			gameLoader.setLocation(getClass().getResource("Game.fxml"));
 			paneMap.put("gameScreen", (BorderPane) gameLoader.load());
-			//controllerMap.put("gameController", gameLoader.getController());
+			controllerMap.put("gameController", gameLoader.getController());
 			
 			//Attempted to create a loader for the how to play
-			//FXMLLoader HTPLoader = new FXMLLoader();
-			//HTPLoader.setLocation(getClass().getResource("HowToPlay.fxml"));
+			FXMLLoader HTPLoader = new FXMLLoader();
+			HTPLoader.setLocation(getClass().getResource("HowToPlay.fxml"));
 			
 			//Attempted to Load and store as above
-			//paneMap.put("HTPScreen", (AnchorPane) settingsLoader.load());
-			//controllerMap.put("settingsController", settingsLoader.getController());
+			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
+			controllerMap.put("HTPController", HTPLoader.getController());
 			
 			//Allow each controller to access every other controller
 			for (SuperController currentControl: controllerMap.values()) {
