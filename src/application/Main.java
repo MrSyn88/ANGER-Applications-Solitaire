@@ -2,6 +2,9 @@ package application;
 
 import java.util.HashMap;
 
+import application.controller.SettingsController;
+import application.controller.SuperController;
+import application.model.SolitaireSettings;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -27,7 +30,7 @@ public class Main extends Application {
 
 			// Create a loader for the main fxml
 			FXMLLoader rootLoader = new FXMLLoader();
-			rootLoader.setLocation(getClass().getResource("Main.fxml"));
+			rootLoader.setLocation(getClass().getResource("view/Main.fxml"));
 
 			// Load it and put its controller in the controllerMap
 			BorderPane rootPane = (BorderPane) rootLoader.load();
@@ -38,7 +41,7 @@ public class Main extends Application {
 
 			// Create a loader for the title screen
 			FXMLLoader titleLoader = new FXMLLoader();
-			titleLoader.setLocation(getClass().getResource("Title.fxml"));
+			titleLoader.setLocation(getClass().getResource("view/Title.fxml"));
 
 			// Load it and store both it and its controller
 			paneMap.put("titleScreen", (BorderPane) titleLoader.load());
@@ -46,20 +49,20 @@ public class Main extends Application {
 
 			// Create a loader for the settings
 			FXMLLoader settingsLoader = new FXMLLoader();
-			settingsLoader.setLocation(getClass().getResource("Settings.fxml"));
+			settingsLoader.setLocation(getClass().getResource("view/Settings.fxml"));
 
 			// Load and store as above
 			paneMap.put("settingsScreen", (GridPane) settingsLoader.load());
 			controllerMap.put("settingsController", settingsLoader.getController());
 
 			FXMLLoader gameLoader = new FXMLLoader();
-			gameLoader.setLocation(getClass().getResource("Game.fxml"));
+			gameLoader.setLocation(getClass().getResource("view/Game.fxml"));
 			paneMap.put("gameScreen", (BorderPane) gameLoader.load());
 			controllerMap.put("gameController", gameLoader.getController());
 
 			// Attempted to create a loader for the how to play
 			FXMLLoader HTPLoader = new FXMLLoader();
-			HTPLoader.setLocation(getClass().getResource("HowToPlay.fxml"));
+			HTPLoader.setLocation(getClass().getResource("view/HowToPlay.fxml"));
 
 			// Attempted to Load and store as above
 			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
@@ -67,7 +70,7 @@ public class Main extends Application {
 			
 			//Load the about fxml
 			FXMLLoader AboutLoader = new FXMLLoader();
-			AboutLoader.setLocation(getClass().getResource("About.fxml"));
+			AboutLoader.setLocation(getClass().getResource("view/About.fxml"));
 
 			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
 			controllerMap.put("AboutController", AboutLoader.getController());

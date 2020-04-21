@@ -1,9 +1,10 @@
-package application;
+package application.controller;
 
 import javafx.fxml.FXML;
 
 import java.io.IOException;
 
+import application.model.SolitaireSettings;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Slider;
