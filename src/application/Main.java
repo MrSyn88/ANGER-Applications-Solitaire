@@ -64,6 +64,13 @@ public class Main extends Application {
 			// Attempted to Load and store as above
 			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
 			controllerMap.put("HTPController", HTPLoader.getController());
+			
+			//Load the about fxml
+			FXMLLoader AboutLoader = new FXMLLoader();
+			AboutLoader.setLocation(getClass().getResource("About.fxml"));
+
+			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
+			controllerMap.put("AboutController", AboutLoader.getController());
 
 			// Allow each controller to access every other controller
 			for (SuperController currentControl : controllerMap.values()) {

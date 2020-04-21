@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AboutController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="40.0" prefHeight="54.0" prefWidth="311.0" text="ANGER Applcations" textAlignment="CENTER">
+         <font>
+            <Font name="Berlin Sans FB" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="106.0" prefHeight="250.0" prefWidth="444.0" text="Put stuff about us here, should be relatively easy. I was thinking no home page button here, because the only way to reach here is through the help tab up top, a person can start a new game from there" wrapText="true" />
+      <Button fx:id="AboutButton" layoutX="424.0" layoutY="341.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+   </children>
+</AnchorPane>
