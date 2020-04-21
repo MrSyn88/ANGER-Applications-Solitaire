@@ -71,7 +71,8 @@ public class Main extends Application {
 			//Load the about fxml
 			FXMLLoader AboutLoader = new FXMLLoader();
 			AboutLoader.setLocation(getClass().getResource("view/About.fxml"));
-
+			
+			//Put references for the about fxml into the appropriate maps
 			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
 			controllerMap.put("AboutController", AboutLoader.getController());
 
