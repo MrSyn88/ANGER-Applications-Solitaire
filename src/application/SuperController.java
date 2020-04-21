@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public abstract class SuperController {
 
-	private HashMap<String, Object> appPaneMap;
-	private HashMap<String, SuperController> appControllerMap;
+	protected HashMap<String, Object> appPaneMap;
+	protected HashMap<String, SuperController> appControllerMap;
 	
 	public HashMap<String, Object> getAppPaneMap() {
 		return appPaneMap;
