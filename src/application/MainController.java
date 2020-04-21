@@ -159,4 +159,5 @@ public class MainController extends SuperController {
 	public void restoreCenterPane() {
 		this.mainPane.setCenter(oldCenterPane);
 	}
+	
 }

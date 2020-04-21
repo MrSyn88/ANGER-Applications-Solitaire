@@ -9,8 +9,8 @@ public class HowToPlayController extends SuperController{
     private Button HTPButton;
 
     @FXML
-    void goHome(ActionEvent event) {
-    	
+    void goBack(ActionEvent event) {
+    	((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
     }
 
 }

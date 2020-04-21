@@ -8,6 +8,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HowToPlayController">
    <children>
       <Label layoutX="42.0" layoutY="7.0" prefHeight="263.0" prefWidth="336.0" text="To win Solitaire, you must get all the cards onto the Foundation piles. The Foundations are ordered by suit and rank, each Foundation has one suit and you must put the cards onto them in the order Ace 2 3 4 5 6 7 8 9 10 Jack Queen King." wrapText="true" />
-      <Button fx:id="HTPButton" layoutX="471.0" layoutY="313.0" mnemonicParsing="false" onAction="#goHome" text="Return Home" />
+      <Button fx:id="HTPButton" layoutX="471.0" layoutY="313.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
    </children>
 </AnchorPane>
