@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 import javafx.event.Event;
 import javafx.event.EventTarget;
