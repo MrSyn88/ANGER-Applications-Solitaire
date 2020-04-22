@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.util.HashMap;
 
 import application.controller.SettingsController;
@@ -13,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
 	// Store an arbitrary number of panes and controllers
@@ -89,6 +92,13 @@ public class Main extends Application {
 			primaryStage.setTitle("ANGER Applications Solitaire");
 			primaryStage.setScene(rootScene);
 			primaryStage.show();
+			
+			String musicFile = "ChillVibes.mp3";     // Plays Roberts playlist
+
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
