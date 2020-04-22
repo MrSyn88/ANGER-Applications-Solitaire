@@ -1,7 +1,7 @@
 /**
  * 
  */
-package application;
+package application.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;

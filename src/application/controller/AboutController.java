@@ -1,12 +1,13 @@
-package application;
+package application.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class HowToPlayController extends SuperController{
+public class AboutController extends SuperController{
 
     @FXML
-    private Button HTPButton;
+    private Button AboutButton;
 
     @FXML
     void goBack(ActionEvent event) {
