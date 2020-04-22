@@ -1,5 +1,6 @@
 package application.controller;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,6 +57,7 @@ public class MainController extends SuperController {
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
 		mainPane.setCenter((BorderPane) appPaneMap.get("gameScreen"));
+		mainPane.setStyle("-fx-background-color: green;");
 
 	}
 
