@@ -9,21 +9,8 @@ Solitaire game using javafx
 Put your name here to test your command line access:  
 Andrew  
 Nico!!  
-<<<<<<< HEAD
-<<<<<<< HEAD
 G-Money  
 Robert
-=======
-G-Money
-Robert
-
-
-***After testing git commits using this readme, further edits are to be done in your specified branch***
->>>>>>> master
-=======
-G-Money  
-Robert  
-SPIDER  
 
 ***
 
@@ -31,4 +18,3 @@ SPIDER
 ***Pull from the master branch to make your repository up to date before editing***  
 
 ***
->>>>>>> master
