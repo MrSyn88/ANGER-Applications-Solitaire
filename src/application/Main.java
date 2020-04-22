@@ -97,6 +97,7 @@ public class Main extends Application {
 
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.volumeProperty().bind(this.settingsObject.musicVolumeProperty());
 			mediaPlayer.play();
 			
 		} catch (Exception e) {
