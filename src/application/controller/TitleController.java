@@ -47,7 +47,7 @@ public class TitleController extends SuperController {
 
 	@FXML
 	void loadLeaderBoard(ActionEvent event) {
-		
+
 	}
 
 	@FXML

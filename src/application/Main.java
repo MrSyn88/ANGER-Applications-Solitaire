@@ -1,5 +1,7 @@
+
 package application;
 
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import application.controller.SettingsController;
@@ -13,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
 	// Store an arbitrary number of panes and controllers
@@ -23,6 +27,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			music();
 			// Initialize the hashmap
 			paneMap = new HashMap<String, Object>();
 			controllerMap = new HashMap<String, SuperController>();
@@ -66,14 +71,15 @@ public class Main extends Application {
 
 			// Attempted to Load and store as above
 			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
+
 			controllerMap.put("HTPController", HTPLoader.getController());
-			
-			//Load the about fxml
+
+			// Load the about fxml
 			FXMLLoader AboutLoader = new FXMLLoader();
 			AboutLoader.setLocation(getClass().getResource("view/About.fxml"));
-			
-			//Put references for the about fxml into the appropriate maps
+
 			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
+
 			controllerMap.put("AboutController", AboutLoader.getController());
 
 			// Allow each controller to access every other controller
@@ -92,6 +98,17 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	MediaPlayer mediaPlayer;
+
+	public void music() {
+		String s = "ChillVibes.mp3";
+		Media h = new Media(Paths.get(s).toUri().toString());
+		mediaPlayer = new MediaPlayer(h);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
+
 	}
 
 	public static void main(String[] args) {
