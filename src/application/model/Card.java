@@ -65,8 +65,10 @@ public class Card {
 	}
 
 	/**
-	 * @param suit One character string representation of the suit of the card to create
-	 * @param value One character string representation of the value of the card to create
+	 * @param suit  One character string representation of the suit of the card to
+	 *              create
+	 * @param value One character string representation of the value of the card to
+	 *              create
 	 */
 	public Card(String suit, String value) {
 		this.setCardSuit(suit);
@@ -79,6 +81,10 @@ public class Card {
 		}
 	}
 
+	/**
+	 * @param otherCard
+	 * @return
+	 */
 	public Boolean equals(Card otherCard) {
 		return (this.cardSuit.equals(otherCard.getCardSuit()) && this.cardValue.equals(otherCard.getCardValue()));
 	}
