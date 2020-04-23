@@ -1,6 +1,8 @@
 package application.model;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class Card {
@@ -63,10 +65,20 @@ public class Card {
 		return (thisCardValue == (otherCardValue - 1) && this.getIsRed() != otherCard.getIsRed());
 
 	}
+	
+	public static Collection<String> getSuitsCodes(){
+		return suitsMap.keySet();
+	}
+	
+	public static Collection<String> getValuesCodes(){
+		return valuesMap.keySet();
+	}
 
 	/**
-	 * @param suit One character string representation of the suit of the card to create
-	 * @param value One character string representation of the value of the card to create
+	 * @param suit  One character string representation of the suit of the card to
+	 *              create
+	 * @param value One character string representation of the value of the card to
+	 *              create
 	 */
 	public Card(String suit, String value) {
 		this.setCardSuit(suit);
@@ -79,6 +91,10 @@ public class Card {
 		}
 	}
 
+	/**
+	 * @param otherCard
+	 * @return
+	 */
 	public Boolean equals(Card otherCard) {
 		return (this.cardSuit.equals(otherCard.getCardSuit()) && this.cardValue.equals(otherCard.getCardValue()));
 	}
