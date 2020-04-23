@@ -1,6 +1,8 @@
 package application.model;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class Card {
@@ -62,6 +64,14 @@ public class Card {
 		// the same color
 		return (thisCardValue == (otherCardValue - 1) && this.getIsRed() != otherCard.getIsRed());
 
+	}
+	
+	public static Collection<String> getSuitsCodes(){
+		return suitsMap.keySet();
+	}
+	
+	public static Collection<String> getValuesCodes(){
+		return valuesMap.keySet();
 	}
 
 	/**
