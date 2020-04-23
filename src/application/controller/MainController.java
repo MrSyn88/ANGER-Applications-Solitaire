@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import application.game.Solitaire;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -57,8 +58,7 @@ public class MainController extends SuperController {
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
 		mainPane.setCenter((BorderPane) appPaneMap.get("gameScreen"));
-		mainPane.setStyle("-fx-background-color: green;");
-
+		Solitaire.yeet();
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction
