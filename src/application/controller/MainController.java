@@ -58,7 +58,6 @@ public class MainController extends SuperController {
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
 		mainPane.setCenter((BorderPane) appPaneMap.get("gameScreen"));
-		Solitaire.yeet();
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction
