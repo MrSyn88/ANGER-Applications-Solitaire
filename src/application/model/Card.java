@@ -2,7 +2,6 @@ package application.model;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class Card {
@@ -155,4 +154,7 @@ public class Card {
 		this.isRed = isRed;
 	}
 
+	public String toString() {
+		return this.getCardValue() + this.getCardSuit();
+	}
 }
