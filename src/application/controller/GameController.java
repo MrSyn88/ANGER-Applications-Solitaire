@@ -29,6 +29,7 @@ public class GameController extends SuperController implements Initializable {
 	private List<Integer> foundationIndices;
 	private SolitaireSettings appSettingsObject;
 	private Game newGame;
+	private Game CurrentGame;
 
 	@FXML
 	private Canvas gameCanvas;
@@ -36,10 +37,47 @@ public class GameController extends SuperController implements Initializable {
 	private Button DrawCardButton;
 
 	@FXML
-	void Draw(ActionEvent event) {
-		System.out.println("Testing the draw button");
-	}
+    void validMove(ActionEvent event) {
+//		Source src = getSrc();
+    }
 
+    @FXML
+    void getSrc(ActionEvent event) {
+
+    }
+
+    @FXML
+    void getDest(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void Draw(ActionEvent event) {
+    	
+    	Deque<Card> drawStack = CurrentGame.getDraw();
+		Deque<Card> drawDiscard = CurrentGame.getDrawDiscard();
+		
+		if(drawStack.isEmpty()) {
+			for (Card currentCard : drawDiscard) {
+				currentCard.setIsFaceUp(false);
+				drawStack.push(currentCard);
+			}
+			drawDiscard.clear();
+		}
+		else {
+			drawStack.peek().setIsFaceUp(true);
+			drawDiscard.push(drawStack.pop());
+		}
+		
+		drawCards(CurrentGame);
+		
+    }
+    
+    public void setGame(Game game)
+    {
+    	CurrentGame = game;
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Set variables for the card height and width, with padding
@@ -90,6 +128,11 @@ public class GameController extends SuperController implements Initializable {
 					cardHeight);
 		}
 
+	}
+	public void drawStacks(Game runningGame) {
+		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
+		Double currentX;
+		Double currentY;
 		for (int i = 0; i < 4; i++) {
 			Deque<Card> FoundationStack = runningGame.getAFoundation(i);
 			currentX = xLayout.get(foundationIndices.get(i));
@@ -100,8 +143,6 @@ public class GameController extends SuperController implements Initializable {
 				if (topCard.getIsFaceUp()) {
 					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY,
 							cardWidth, cardHeight);
-					System.out
-							.println("Adding a card to the canvas at " + topCard.getFaceLocation().toURI().toString());
 				}
 			} else {
 				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
@@ -120,8 +161,6 @@ public class GameController extends SuperController implements Initializable {
 							currentY + offset,
 
 							cardWidth, cardHeight);
-					System.out
-							.println("Adding a card to the canvas at " + someCard.getFaceLocation().toURI().toString());
 				} else {
 					currentGC.drawImage(new Image(someCard.getFaceLocation().toURI().toString()), currentX,
 							currentY + offset, cardWidth, cardHeight);

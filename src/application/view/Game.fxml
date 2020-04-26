@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
@@ -8,6 +9,7 @@
 
 <Pane style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
-      <Canvas fx:id="gameCanvas" height="600.0" layoutX="13.0" layoutY="14.0" width="1142.0" />
+      <Canvas fx:id="gameCanvas" height="400.0" layoutX="13.0" layoutY="14.0" onMouseDragged="#validMove" onMousePressed="#getSrc" onMouseReleased="#getDest" width="600.0" />
+      <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#Draw" prefHeight="90.0" prefWidth="70.0" style="-fx-background-color: transparent;" />
    </children>
 </Pane>
