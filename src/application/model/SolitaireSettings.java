@@ -8,12 +8,16 @@ import java.io.FileNotFoundException;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class SolitaireSettings {
 
@@ -23,6 +27,10 @@ public class SolitaireSettings {
 	private BooleanProperty undoable = new SimpleBooleanProperty();
 	private BooleanProperty showTimes = new SimpleBooleanProperty();
 	private BooleanProperty solveable = new SimpleBooleanProperty();
+	private IntegerProperty selectedBackIndex = new SimpleIntegerProperty();
+	private File selectedCardBack;
+	private File cardBackLocation = new File("src/application/view/Backs");
+	private Map<String, File> cardBacks;
 	private File settingsFile;
 
 	/**
@@ -32,6 +40,11 @@ public class SolitaireSettings {
 		super();
 
 		this.settingsFile = new File("settings.txt");
+		File[] fileList = cardBackLocation.listFiles();
+		cardBacks = new HashMap<String, File>();
+		for (File cardBack : fileList) {
+			cardBacks.put(cardBack.getName(), cardBack);
+		}
 
 		if (this.settingsFile.exists()) {
 			try {
@@ -43,6 +56,7 @@ public class SolitaireSettings {
 		} else {
 			this.setDefaults();
 		}
+
 	}
 
 	/**
@@ -52,6 +66,12 @@ public class SolitaireSettings {
 	public SolitaireSettings(File settingsFile) throws IOException {
 		super();
 		this.settingsFile = settingsFile;
+		File[] fileList = cardBackLocation.listFiles();
+		cardBacks = new HashMap<String, File>();
+		for (File cardBack : fileList) {
+			cardBacks.put(cardBack.getName(), cardBack);
+		}
+
 		if (this.settingsFile.exists()) {
 			this.loadSettings();
 		} else {
@@ -66,6 +86,13 @@ public class SolitaireSettings {
 		setUndoable(true);
 		setSolveable(true);
 		setShowTimes(true);
+		if (!cardBacks.isEmpty()) {
+			for (String key : cardBacks.keySet()) {
+				setSelectedCardBack(key);
+				break;
+			}
+		}
+		setSelectedBackIndex(0);
 
 	}
 
@@ -187,6 +214,48 @@ public class SolitaireSettings {
 	}
 
 	/**
+	 * @return the selectedBackIndex
+	 */
+	public IntegerProperty getSelectedBackIndexProperty() {
+		return selectedBackIndex;
+	}
+
+	/**
+	 * @param selectedBackIndex the selectedBackIndex to set
+	 */
+	public void setSelectedBackIndex(Integer selectedBackIndex) {
+		this.selectedBackIndex.setValue(selectedBackIndex);
+	}
+
+	/**
+	 * @return
+	 */
+	public Integer getSelectedBackIndex() {
+		return this.selectedBackIndex.getValue();
+	}
+
+	/**
+	 * @return
+	 */
+	public File getSelectedCardBack() {
+		return selectedCardBack;
+	}
+
+	/**
+	 * @param selectedCard
+	 */
+	public void setSelectedCardBack(String selectedCard) {
+		this.selectedCardBack = this.cardBacks.get(selectedCard);
+	}
+
+	/**
+	 * @return the cardBacks
+	 */
+	public Map<String, File> getCardBacks() {
+		return cardBacks;
+	}
+
+	/**
 	 * @return the settingsFile
 	 */
 	public File getSettingsFile() {
@@ -211,6 +280,8 @@ public class SolitaireSettings {
 		outFile.println(getUndoable());
 		outFile.println(getSolveable());
 		outFile.println(getShowTimes());
+		outFile.println(getSelectedCardBack());
+		outFile.println(getSelectedBackIndex());
 
 		outFile.close();
 	}
@@ -241,6 +312,14 @@ public class SolitaireSettings {
 			setShowTimes(inScan.nextBoolean());
 		else
 			setShowTimes(true);
+		if (inScan.hasNext())
+			setSelectedCardBack(inScan.next());
+		else
+			setSelectedCardBack("");
+		if(inScan.hasNextInt())
+			setSelectedBackIndex(inScan.nextInt());
+		else
+			setSelectedBackIndex(0);
 
 		inScan.close();
 	}

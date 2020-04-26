@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import application.model.Card;
 import application.model.Game;
+import application.model.SolitaireSettings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +27,8 @@ public class GameController extends SuperController implements Initializable {
 	private Double cardWidth;
 	private List<Integer> drawIndices;
 	private List<Integer> foundationIndices;
+	private SolitaireSettings appSettingsObject;
+	private Game newGame;
 
 	@FXML
 	private Canvas gameCanvas;
@@ -61,27 +64,36 @@ public class GameController extends SuperController implements Initializable {
 		foundationIndices.add(5);
 		foundationIndices.add(6);
 
-		Game newGame = new Game();
+		newGame = new Game();
 		newGame.startNewGame();
-		drawCards(newGame);
 	}
 
 	public void drawCards(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 
 		Deque<Card> drawStack = runningGame.getDraw();
+		Double currentX = xLayout.get(0);
+		Double currentY = yLayout.get(0);
 		if (drawStack.isEmpty()) {
-			currentGC.strokeRoundRect(xLayout.get(0), yLayout.get(0), cardWidth, cardHeight, 10, 10);
+			currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
+		} else {
+			currentGC.drawImage(new Image(appSettingsObject.getSelectedCardBack().toURI().toString()), currentX,
+					currentY, cardWidth, cardHeight);
 		}
 		Deque<Card> drawDiscard = runningGame.getDrawDiscard();
+		currentX = xLayout.get(1);
 		if (drawDiscard.isEmpty()) {
-			currentGC.strokeRoundRect(xLayout.get(1), yLayout.get(0), cardWidth, cardHeight, 10, 10);
+			currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
+		} else {
+			Card topCard = drawDiscard.peek();
+			currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY, cardWidth,
+					cardHeight);
 		}
 
 		for (int i = 0; i < 4; i++) {
 			Deque<Card> currentStack = runningGame.getAFoundation(i);
-			Double currentX = xLayout.get(foundationIndices.get(i));
-			Double currentY = yLayout.get(0);
+			currentX = xLayout.get(foundationIndices.get(i));
+			currentY = yLayout.get(0);
 			if (!currentStack.isEmpty()) {
 				Card topCard = currentStack.peek();
 				if (topCard.getIsFaceUp()) {
@@ -97,8 +109,8 @@ public class GameController extends SuperController implements Initializable {
 
 		for (int i = 0; i < 7; i++) {
 			Deque<Card> currentStack = runningGame.getAPlayArea(i);
-			Double currentX = xLayout.get(i);
-			Double currentY = yLayout.get(1);
+			currentX = xLayout.get(i);
+			currentY = yLayout.get(1);
 			if (!currentStack.isEmpty()) {
 				Card topCard = currentStack.peek();
 				if (topCard.getIsFaceUp()) {
@@ -113,6 +125,34 @@ public class GameController extends SuperController implements Initializable {
 
 		}
 
+	}
+
+	/**
+	 * @return the appSettingsObject
+	 */
+	public SolitaireSettings getAppSettingsObject() {
+		return appSettingsObject;
+	}
+
+	/**
+	 * @param appSettingsObject the appSettingsObject to set
+	 */
+	public void setAppSettingsObject(SolitaireSettings appSettingsObject) {
+		this.appSettingsObject = appSettingsObject;
+	}
+
+	/**
+	 * @return the newGame
+	 */
+	public Game getNewGame() {
+		return newGame;
+	}
+
+	/**
+	 * @param newGame the newGame to set
+	 */
+	public void setNewGame(Game newGame) {
+		this.newGame = newGame;
 	}
 
 }
