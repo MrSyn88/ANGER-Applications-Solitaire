@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.util.HashMap;
 
+import application.controller.GameController;
 import application.controller.SettingsController;
 import application.controller.SuperController;
 import application.model.SolitaireSettings;
@@ -87,6 +88,7 @@ public class Main extends Application {
 
 			// Pass a reference to the settings for the entire application
 			((SettingsController) controllerMap.get("settingsController")).setAppSettingsObject(settingsObject);
+			((GameController) controllerMap.get("gameController")).setAppSettingsObject(settingsObject);
 
 			rootPane.setCenter((Node) paneMap.get("titleScreen"));
 			rootScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
