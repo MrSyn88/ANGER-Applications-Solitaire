@@ -79,11 +79,11 @@ public class GameController extends SuperController implements Initializable {
 		}
 
 		for (int i = 0; i < 4; i++) {
-			Deque<Card> currentStack = runningGame.getAFoundation(i);
+			Deque<Card> FoundationStack = runningGame.getAFoundation(i);
 			Double currentX = xLayout.get(foundationIndices.get(i));
 			Double currentY = yLayout.get(0);
-			if (!currentStack.isEmpty()) {
-				Card topCard = currentStack.peek();
+			if (!FoundationStack.isEmpty()) {
+				Card topCard = FoundationStack.peek();
 				if (topCard.getIsFaceUp()) {
 					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY,
 							cardWidth, cardHeight);
@@ -96,13 +96,14 @@ public class GameController extends SuperController implements Initializable {
 		}
 
 		for (int i = 0; i < 7; i++) {
+			for(int j = 0; j <= i; j++) {
 			Deque<Card> currentStack = runningGame.getAPlayArea(i);
 			Double currentX = xLayout.get(i);
 			Double currentY = yLayout.get(1);
 			if (!currentStack.isEmpty()) {
 				Card topCard = currentStack.peek();
 				if (topCard.getIsFaceUp()) {
-					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY,
+					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY+(j*15),
 							cardWidth, cardHeight);
 					System.out
 							.println("Adding a card to the canvas at " + topCard.getFaceLocation().toURI().toString());
@@ -111,6 +112,8 @@ public class GameController extends SuperController implements Initializable {
 				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
 			}
 
+			}
+			
 		}
 
 	}
