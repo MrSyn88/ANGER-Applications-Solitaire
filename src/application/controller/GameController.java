@@ -40,12 +40,12 @@ public class GameController extends SuperController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Set variables for the card height and width, with padding
-		cardHeight = (double) 170;
-		cardWidth = (double) 121;
+		cardHeight = (double) 90;
+		cardWidth = (double) 70;
 		// Set the x and y values for the start of each card row & column
 		xLayout = new ArrayList<Double>();
 		for (int i = 0; i < 7; i++) {
-			xLayout.add(i * (cardWidth + 20));
+			xLayout.add(i * (cardWidth + 15));
 		}
 		yLayout = new ArrayList<Double>();
 		yLayout.add((double) 0);
