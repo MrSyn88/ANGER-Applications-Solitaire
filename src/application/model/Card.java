@@ -2,16 +2,37 @@ package application.model;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Card {
-	private static final Map<String, String> suitsMap = Map.ofEntries(Map.entry("h", "Hearts"),
-			Map.entry("d", "Diamonds"), Map.entry("c", "Clubs"), Map.entry("s", "Spades"));
-	private static final Map<String, Integer> valuesMap = Map.ofEntries(Map.entry("a", 1), Map.entry("2", 2),
-			Map.entry("3", 3), Map.entry("4", 4), Map.entry("5", 5), Map.entry("6", 6), Map.entry("7", 7),
-			Map.entry("8", 8), Map.entry("9", 9), Map.entry("t", 10), Map.entry("j", 11), Map.entry("q", 12),
-			Map.entry("k", 13));
+	private static final Map<String, String> suitsMap;
+	private static final Map<String, Integer> valuesMap;
 	private static final String fileExtension = ".png";
+
+	static {
+		valuesMap = new HashMap<String, Integer>();
+		valuesMap.put("a", 1);
+		valuesMap.put("2", 2);
+		valuesMap.put("3", 3);
+		valuesMap.put("4", 4);
+		valuesMap.put("5", 5);
+		valuesMap.put("6", 6);
+		valuesMap.put("7", 7);
+		valuesMap.put("8", 8);
+		valuesMap.put("9", 9);
+		valuesMap.put("t", 10);
+		valuesMap.put("j", 11);
+		valuesMap.put("q", 12);
+		valuesMap.put("k", 13);
+
+		suitsMap = new HashMap<String, String>();
+		suitsMap.put("h", "Hearts");
+		suitsMap.put("d", "Diamonds");
+		suitsMap.put("c", "Clubs");
+		suitsMap.put("s", "Spades");
+
+	}
 
 	private String cardSuit;
 	private String cardValue;
@@ -24,7 +45,7 @@ public class Card {
 	 * @return A file object for the given suit and value
 	 */
 	public static File getFaceLocation(String suit, String value) {
-		return new File(suitsMap.get(suit) + "/" + value + suit + fileExtension);
+		return new File("src/application/view/" + suitsMap.get(suit) + "/" + value + suit + fileExtension);
 	}
 
 	/**
@@ -64,12 +85,12 @@ public class Card {
 		return (thisCardValue == (otherCardValue - 1) && this.getIsRed() != otherCard.getIsRed());
 
 	}
-	
-	public static Collection<String> getSuitsCodes(){
+
+	public static Collection<String> getSuitsCodes() {
 		return suitsMap.keySet();
 	}
-	
-	public static Collection<String> getValuesCodes(){
+
+	public static Collection<String> getValuesCodes() {
 		return valuesMap.keySet();
 	}
 

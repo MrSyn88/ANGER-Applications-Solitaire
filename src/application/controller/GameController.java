@@ -3,26 +3,31 @@ package application.controller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import application.model.Card;
 import application.model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
 public class GameController extends SuperController implements Initializable {
 
-	@FXML
-	private BorderPane gamePane;
+	private List<Double> xLayout;
+	private List<Double> yLayout;
+	private Double cardHeight;
+	private Double cardWidth;
+	private List<Integer> drawIndices;
+	private List<Integer> foundationIndices;
 
 	@FXML
-	private GridPane gridPane;
-
+	private Canvas gameCanvas;
 	@FXML
 	private Button DrawCardButton;
 
@@ -33,8 +38,48 @@ public class GameController extends SuperController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// Set variables for the card height and width, with padding
+		cardHeight = (double) 170;
+		cardWidth = (double) 121;
+		// Set the x and y values for the start of each card row & column
+		xLayout = new ArrayList<Double>();
+		for (int i = 0; i < 7; i++) {
+			xLayout.add(i * (cardWidth + 20));
+		}
+		yLayout = new ArrayList<Double>();
+		yLayout.add((double) 0);
+		yLayout.add(cardHeight + 20);
+
+		drawIndices = new ArrayList<Integer>();
+		drawIndices.add(0);
+		drawIndices.add(1);
+
+		foundationIndices = new ArrayList<Integer>();
+		foundationIndices.add(3);
+		foundationIndices.add(4);
+		foundationIndices.add(5);
+		foundationIndices.add(6);
+
 		Game newGame = new Game();
 		newGame.startNewGame();
+		drawCards(newGame);
+	}
+
+	public void drawCards(Game runningGame) {
+		for (int i = 0; i < 7; i++) {
+			Deque<Card> currentStack = runningGame.getAPlayArea(i);
+			if (!currentStack.isEmpty()) {
+				Card topCard = currentStack.peek();
+				if (topCard.getIsFaceUp()) {
+					gameCanvas.getGraphicsContext2D().drawImage(new Image(topCard.getFaceLocation().toURI().toString()),
+							xLayout.get(i), yLayout.get(1), cardWidth, cardHeight);
+					System.out
+							.println("Adding a card to the canvas at " + topCard.getFaceLocation().toURI().toString());
+				}
+			}
+
+		}
+
 	}
 
 }

@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -60,7 +61,7 @@ public class Main extends Application {
 
 			FXMLLoader gameLoader = new FXMLLoader();
 			gameLoader.setLocation(getClass().getResource("view/Game.fxml"));
-			paneMap.put("gameScreen", (BorderPane) gameLoader.load());
+			paneMap.put("gameScreen", (Pane) gameLoader.load());
 			controllerMap.put("gameController", gameLoader.getController());
 
 			// Attempted to create a loader for the how to play
@@ -70,12 +71,12 @@ public class Main extends Application {
 			// Attempted to Load and store as above
 			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
 			controllerMap.put("HTPController", HTPLoader.getController());
-			
-			//Load the about fxml
+
+			// Load the about fxml
 			FXMLLoader AboutLoader = new FXMLLoader();
 			AboutLoader.setLocation(getClass().getResource("view/About.fxml"));
-			
-			//Put references for the about fxml into the appropriate maps
+
+			// Put references for the about fxml into the appropriate maps
 			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
 			controllerMap.put("AboutController", AboutLoader.getController());
 
@@ -92,14 +93,15 @@ public class Main extends Application {
 			primaryStage.setTitle("ANGER Applications Solitaire");
 			primaryStage.setScene(rootScene);
 			primaryStage.show();
-			
-			String musicFile = "ChillVibes.mp3";     // Plays Roberts playlist
+
+			String musicFile = "ChillVibes.mp3"; // Plays Roberts playlist
 
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.volumeProperty().bind(this.settingsObject.musicVolumeProperty().multiply(this.settingsObject.masterVolumeProperty()).divide(10000));
+			mediaPlayer.volumeProperty().bind(this.settingsObject.musicVolumeProperty()
+					.multiply(this.settingsObject.masterVolumeProperty()).divide(10000));
 			mediaPlayer.play();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

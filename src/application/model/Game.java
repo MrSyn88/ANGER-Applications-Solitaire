@@ -13,7 +13,7 @@ public class Game {
 	private List<Deque<Card>> foundations;
 	private Deque<Card> draw;
 	private Deque<Card> tempCardStack;
-	private Deque<Card> drawDiscardStack;
+	private Deque<Card> drawDiscard;
 
 	private IntegerProperty drawNumber;
 
@@ -31,7 +31,7 @@ public class Game {
 
 		// Add a new Deque for the draw pile
 		this.draw = new ArrayDeque<Card>();
-		this.drawDiscardStack = new ArrayDeque<Card>();
+		this.drawDiscard = new ArrayDeque<Card>();
 		// Add a new Deque to hold cards that are being moved
 		this.tempCardStack = new ArrayDeque<Card>();
 
@@ -51,7 +51,7 @@ public class Game {
 				this.playArea.get(j).add(this.gameDeck.get(lastElement));
 				this.gameDeck.remove(lastElement);
 				if (j == i) {
-					this.playArea.get(j).getLast().setIsFaceUp(true);
+					this.playArea.get(j).peek().setIsFaceUp(true);
 				}
 			}
 		}
@@ -66,11 +66,11 @@ public class Game {
 		// If the draw pile is empty, then move all cards from the discard stack to the
 		// draw stack
 		if (this.draw.isEmpty()) {
-			for (Card currentCard : this.drawDiscardStack) {
+			for (Card currentCard : this.drawDiscard) {
 				currentCard.setIsFaceUp(false);
 				this.draw.push(currentCard);
 			}
-			this.drawDiscardStack.clear();
+			this.drawDiscard.clear();
 			return;
 		}
 
@@ -78,7 +78,7 @@ public class Game {
 		// draw discard stack
 		for (int i = 0; i < this.getDrawNumber() && !this.draw.isEmpty(); i++) {
 			this.draw.peek().setIsFaceUp(true);
-			this.drawDiscardStack.push(this.draw.pop());
+			this.drawDiscard.push(this.draw.pop());
 		}
 	}
 
@@ -87,10 +87,7 @@ public class Game {
 	 * @param sourceColumn
 	 * @param destColumn
 	 */
-	public void moveCardToStack(Card cardToMove, Integer sourceColumn, Integer destColumn) {
-
-		Deque<Card> source = this.playArea.get(sourceColumn);
-		Deque<Card> dest = this.playArea.get(destColumn);
+	public void moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		// Can't move a card if it's not face up
 		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidTableCard(dest.peek())) {
 			return;
@@ -106,18 +103,32 @@ public class Game {
 		this.tempCardStack.clear();
 	}
 
-	public void moveCardToFoundation(Card cardToMove, Integer sourceColumn, Integer destFoundation) {
-		Deque<Card> source = this.playArea.get(sourceColumn);
-		Deque<Card> dest = this.foundations.get(destFoundation);
+	/**
+	 * @param cardToMove
+	 * @param source
+	 * @param dest
+	 */
+	public void moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		// Can't move a card if it's not face up
 		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
 			return;
 		} else if (source.peek() != cardToMove) {
 			return;
 		}
+		this.checkGameComplete();
 	}
 
-	public void moveCardFromDraw(Card cardToMove) {
+	private Boolean checkGameComplete() {
+		Boolean isGameDone = true;
+		for (Deque<Card> currentPlayArea : this.playArea) {
+			isGameDone = isGameDone && currentPlayArea.isEmpty();
+		}
+
+		isGameDone = isGameDone && this.draw.isEmpty();
+		isGameDone = isGameDone && this.drawDiscard.isEmpty();
+		isGameDone = isGameDone && this.tempCardStack.isEmpty();
+
+		return isGameDone;
 
 	}
 
@@ -157,17 +168,25 @@ public class Game {
 	}
 
 	/**
-	 * @return the drawDiscardStack
+	 * @param index
+	 * @return
 	 */
-	public Deque<Card> getDrawDiscardStack() {
-		return drawDiscardStack;
+	public Deque<Card> getAFoundation(Integer index) {
+		return foundations.get(index);
 	}
 
 	/**
-	 * @param drawDiscardStack the drawDiscardStack to set
+	 * @return the drawDiscard
 	 */
-	public void setDrawDiscardStack(Deque<Card> drawDiscardStack) {
-		this.drawDiscardStack = drawDiscardStack;
+	public Deque<Card> getDrawDiscard() {
+		return drawDiscard;
+	}
+
+	/**
+	 * @param drawDiscard the drawDiscard to set
+	 */
+	public void setDrawDiscard(Deque<Card> drawDiscard) {
+		this.drawDiscard = drawDiscard;
 	}
 
 	/**
@@ -182,6 +201,14 @@ public class Game {
 	 */
 	public List<Deque<Card>> getPlayArea() {
 		return playArea;
+	}
+
+	/**
+	 * @param index
+	 * @return
+	 */
+	public Deque<Card> getAPlayArea(Integer index) {
+		return playArea.get(index);
 	}
 
 	/**

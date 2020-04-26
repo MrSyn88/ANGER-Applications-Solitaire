@@ -1,6 +1,5 @@
 package application.controller;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,7 +56,7 @@ public class MainController extends SuperController {
 	@FXML
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
-		mainPane.setCenter((BorderPane) appPaneMap.get("gameScreen"));
+		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction
