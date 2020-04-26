@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
@@ -66,16 +67,48 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	public void drawCards(Game runningGame) {
-		for (int i = 0; i < 7; i++) {
-			Deque<Card> currentStack = runningGame.getAPlayArea(i);
+		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
+
+		Deque<Card> drawStack = runningGame.getDraw();
+		if (drawStack.isEmpty()) {
+			currentGC.strokeRoundRect(xLayout.get(0), yLayout.get(0), cardWidth, cardHeight, 10, 10);
+		}
+		Deque<Card> drawDiscard = runningGame.getDrawDiscard();
+		if (drawDiscard.isEmpty()) {
+			currentGC.strokeRoundRect(xLayout.get(1), yLayout.get(0), cardWidth, cardHeight, 10, 10);
+		}
+
+		for (int i = 0; i < 4; i++) {
+			Deque<Card> currentStack = runningGame.getAFoundation(i);
+			Double currentX = xLayout.get(foundationIndices.get(i));
+			Double currentY = yLayout.get(0);
 			if (!currentStack.isEmpty()) {
 				Card topCard = currentStack.peek();
 				if (topCard.getIsFaceUp()) {
-					gameCanvas.getGraphicsContext2D().drawImage(new Image(topCard.getFaceLocation().toURI().toString()),
-							xLayout.get(i), yLayout.get(1), cardWidth, cardHeight);
+					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY,
+							cardWidth, cardHeight);
 					System.out
 							.println("Adding a card to the canvas at " + topCard.getFaceLocation().toURI().toString());
 				}
+			} else {
+				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
+			}
+		}
+
+		for (int i = 0; i < 7; i++) {
+			Deque<Card> currentStack = runningGame.getAPlayArea(i);
+			Double currentX = xLayout.get(i);
+			Double currentY = yLayout.get(1);
+			if (!currentStack.isEmpty()) {
+				Card topCard = currentStack.peek();
+				if (topCard.getIsFaceUp()) {
+					currentGC.drawImage(new Image(topCard.getFaceLocation().toURI().toString()), currentX, currentY,
+							cardWidth, cardHeight);
+					System.out
+							.println("Adding a card to the canvas at " + topCard.getFaceLocation().toURI().toString());
+				}
+			} else {
+				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
 			}
 
 		}
