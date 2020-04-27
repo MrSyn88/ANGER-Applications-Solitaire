@@ -11,6 +11,7 @@ import application.model.Card;
 import application.model.Game;
 import application.model.SolitaireSettings;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class GameController extends SuperController implements Initializable {
 
@@ -35,8 +37,9 @@ public class GameController extends SuperController implements Initializable {
 	private Integer cardYOffset;
 	private Integer xMargin;
 	private Integer yMargin;
-	// private Game CurrentGame;
 
+	@FXML
+	private Pane gamePane;
 	@FXML
 	private Canvas gameCanvas;
 	@FXML
@@ -163,6 +166,13 @@ public class GameController extends SuperController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//gamePane.setPrefWidth(900);
+		//gamePane.setPrefHeight(650);
+
+		gameCanvas.widthProperty().bind(gamePane.widthProperty());
+		gameCanvas.heightProperty().bind(gamePane.heightProperty());
+		gameCanvas.widthProperty().addListener(evt -> updateValues());
+		gameCanvas.heightProperty().addListener(evt -> updateValues());
 		// Set variables for the card height and width, with padding
 		cardHeight = (double) 90;
 		cardWidth = (double) 70;
@@ -190,6 +200,24 @@ public class GameController extends SuperController implements Initializable {
 
 		newGame = new Game();
 		newGame.startNewGame();
+	}
+
+	public void updateValues() {
+		System.out.println(
+				((Double) gameCanvas.getWidth()).toString() + "x" + ((Double) gameCanvas.getHeight()).toString());
+
+		cardHeight = gameCanvas.getHeight() / 4;
+		cardWidth = cardHeight / 1.4529;
+		cardYOffset = (int) (cardHeight / 8);
+
+		for (int i = 0; i < 7; i++) {
+			xLayout.set(i, i * (cardWidth + xMargin));
+		}
+		yLayout.set(0, (double) 0);
+		yLayout.set(1, cardHeight + yMargin);
+
+		drawCards();
+
 	}
 
 	/**

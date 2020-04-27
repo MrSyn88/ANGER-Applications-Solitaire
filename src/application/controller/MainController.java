@@ -1,29 +1,20 @@
 package application.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import java.util.Stack;
 
-import application.game.Solitaire;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.event.Event;
 
 public class MainController extends SuperController {
+
 	private Stack<Pane> oldCenterPane;
 	@FXML
 	private BorderPane mainPane;
@@ -58,9 +49,11 @@ public class MainController extends SuperController {
 	@FXML
 	public void startNewGame(ActionEvent event) throws IOException {
 		System.out.println("Starting a new game");
-		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
+
 		GameController currentGame = (GameController) appControllerMap.get("gameController");
+		currentGame.updateValues();
 		currentGame.drawCards();
+		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction
@@ -84,17 +77,20 @@ public class MainController extends SuperController {
 	// Event Listener on MenuItem[#preferencesMenuItem].onAction
 	@FXML
 	public void openPreferencesEventHandler(ActionEvent event) {
-		
-		this.oldCenterPane.push((Pane) this.mainPane.getCenter());
+
+		this.saveOldPane();
 		// Get the main pane and set the center to be the settings screen
 		((SettingsController) appControllerMap.get("settingsController")).saveOldSettings();
 		mainPane.setCenter((GridPane) appPaneMap.get("settingsScreen"));
 	}
+
 	@FXML
 	public void returnHomeEventHandler(ActionEvent event) {
 
-		this.oldCenterPane.push((Pane) this.mainPane.getCenter());
+		this.saveOldPane();
+
 		// Get the main pane and set the center to be the title screen
+
 		mainPane.setCenter((Pane) appPaneMap.get("titleScreen"));
 	}
 
@@ -165,8 +161,12 @@ public class MainController extends SuperController {
 	@FXML
 	public void aboutEventHandler(ActionEvent event) {
 		System.out.println("Opening about screen");
-		this.oldCenterPane.push((Pane) this.mainPane.getCenter());
+		this.saveOldPane();
 		mainPane.setCenter((AnchorPane) appPaneMap.get("AboutScreen"));
+	}
+
+	public void saveOldPane() {
+		this.oldCenterPane.push((Pane) this.mainPane.getCenter());
 	}
 
 	public void restoreCenterPane() {
