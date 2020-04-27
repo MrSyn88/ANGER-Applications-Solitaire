@@ -110,12 +110,17 @@ public class Game {
 	 * @param dest
 	 */
 	public void moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
-		// Can't move a card if it's not face up
-		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
+		if (source == dest) {
+			return;
+		} else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
+			System.out.println(dest.peek());
+			// Can't move a card if it's not face up
 			return;
 		} else if (source.peek() != cardToMove) {
 			return;
 		}
+
+		dest.push(source.pop());
 		this.checkGameComplete();
 	}
 

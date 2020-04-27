@@ -64,7 +64,11 @@ public class Card {
 	 * @return
 	 */
 	public Boolean isValidFoundationCard(Card otherCard) {
+
 		Integer thisCardValue = Card.valuesMap.get(this.getCardValue());
+		if (otherCard == null) {
+			return (thisCardValue == 1);
+		}
 		Integer otherCardValue = Card.valuesMap.get(otherCard.getCardValue());
 		return (thisCardValue == (otherCardValue + 1) && this.getCardSuit() == otherCard.getCardSuit());
 

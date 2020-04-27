@@ -18,6 +18,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
 public class GameController extends SuperController implements Initializable {
 
@@ -29,6 +30,8 @@ public class GameController extends SuperController implements Initializable {
 	private List<Integer> foundationIndices;
 	private SolitaireSettings appSettingsObject;
 	private Game newGame;
+	private Deque<Card> srcStack;
+	private Card cardToMove;
 	// private Game CurrentGame;
 
 	@FXML
@@ -37,18 +40,56 @@ public class GameController extends SuperController implements Initializable {
 	private Button DrawCardButton;
 
 	@FXML
-	void validMove(ActionEvent event) {
-//		Source src = getSrc();
+	void dropCard(MouseEvent event) {
+		System.out.println("In getDest");
+		Deque<Card> destStack = null;
+
+		if (event.getY() < this.yLayout.get(1)) {
+			// If it's within the draw box, do this
+			if (event.getX() > this.xLayout.get(foundationIndices.get(0))) {
+				Double tempX = event.getX();
+				Integer foundationNum;
+				// Transform the X value for this index to find the relevant foundation number
+				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
+				tempX = tempX / (cardWidth + 15);
+				foundationNum = ((Double) Math.floor(tempX)).intValue();
+				System.out.println("Foundation number: " + foundationNum.toString());
+				destStack = newGame.getAFoundation(foundationNum);
+				newGame.moveCardToFoundation(cardToMove, srcStack, destStack);
+				System.out.println(srcStack);
+				System.out.println(destStack);
+			}
+		}
+
+		drawCards();
 	}
 
 	@FXML
-	void getSrc(ActionEvent event) {
+	void pickUpCard(MouseEvent event) {
+		System.out.println("In getSrc");
+		this.srcStack = null;
+		if (event.getY() < this.yLayout.get(1)) {
+			// If it's within the draw box, do this
+			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
+				srcStack = this.newGame.getDrawDiscard();
+				cardToMove = srcStack.peek();
+			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) {
+				Double tempX = event.getX();
+				Integer foundationNum;
+				// Transform the X value for this index to find the relevant foundation number
+				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
+				tempX = tempX / (cardWidth + 15);
+				foundationNum = ((Double) Math.floor(tempX)).intValue();
+				System.out.println("Foundation number: " + foundationNum.toString());
+				srcStack = newGame.getAFoundation(foundationNum);
+				cardToMove = srcStack.peek();
 
+			}
+		}
 	}
 
 	@FXML
-	void getDest(ActionEvent event) {
-
+	void dragCard(MouseEvent event) {
 	}
 
 	@FXML
@@ -91,6 +132,9 @@ public class GameController extends SuperController implements Initializable {
 		newGame.startNewGame();
 	}
 
+	/**
+	 * 
+	 */
 	public void drawCards() {
 		// Clear the entire canvas, so we don't get any duplicate cards
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
@@ -101,6 +145,9 @@ public class GameController extends SuperController implements Initializable {
 		drawStacks(this.newGame);
 	}
 
+	/**
+	 * @param runningGame
+	 */
 	public void drawTop(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 
