@@ -89,6 +89,9 @@ public class Game {
 	 * @param destColumn
 	 */
 	public void moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
+		if (source == dest) {
+			return;
+		}
 		// Can't move a card if it's not face up
 		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidTableCard(dest.peek())) {
 			return;
@@ -102,7 +105,8 @@ public class Game {
 			dest.push(currentCard);
 		}
 		this.tempCardStack.clear();
-		source.peek().setIsFaceUp(true);
+		if (!source.isEmpty())
+			source.peek().setIsFaceUp(true);
 	}
 
 	/**
@@ -121,7 +125,8 @@ public class Game {
 		}
 
 		dest.push(source.pop());
-		source.peek().setIsFaceUp(true);
+		if (!source.isEmpty())
+			source.peek().setIsFaceUp(true);
 	}
 
 	public Boolean checkGameComplete() {

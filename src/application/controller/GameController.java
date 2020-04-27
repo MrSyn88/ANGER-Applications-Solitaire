@@ -1,9 +1,6 @@
 package application.controller;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
@@ -18,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -46,7 +44,8 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void dropCard(MouseEvent event) {
-		System.out.println("In getDest");
+		System.out.println(srcStack);
+		System.out.println(cardToMove);
 		Deque<Card> destStack = null;
 
 		if (event.getY() < this.yLayout.get(1)) {
@@ -62,6 +61,7 @@ public class GameController extends SuperController implements Initializable {
 
 				// Set the destination stack based on where the user clicked, then move
 				destStack = newGame.getAFoundation(foundationNum);
+				System.out.println(cardToMove);
 				newGame.moveCardToFoundation(cardToMove, srcStack, destStack);
 			}
 		} else { // Handle putting cards in the stack here
@@ -74,6 +74,7 @@ public class GameController extends SuperController implements Initializable {
 			destStack = newGame.getAPlayArea(stackNum);
 
 			if (destStack == srcStack) {
+				drawCards();
 				return;
 			} else {
 				newGame.moveCardToStack(cardToMove, srcStack, destStack);
@@ -127,9 +128,17 @@ public class GameController extends SuperController implements Initializable {
 			if (tempY > startOfLastCard && tempY < bottomOfStack) {
 				cardToMove = srcStack.peek();
 			} else if (tempY < startOfLastCard) {
-				Card[] stackArray = (Card[]) ((ArrayDeque<Card>) srcStack).toArray();
+				int i = 0;
 				Integer index = ((Double) Math.floor(((startOfLastCard - tempY) / cardYOffset))).intValue() + 1;
-				cardToMove = stackArray[index];
+				Card currentCard = srcStack.peek();
+				for (Iterator<Card> stkIt = srcStack.iterator(); stkIt.hasNext() && i <= index;) {
+					System.out.println(currentCard);
+
+					currentCard = stkIt.next();
+					i++;
+				}
+				System.out.println(currentCard);
+				cardToMove = currentCard;
 			}
 
 		}
@@ -194,6 +203,10 @@ public class GameController extends SuperController implements Initializable {
 		// Draw the whole table for the game
 		drawTop(this.newGame);
 		drawStacks(this.newGame);
+		if (this.newGame.checkGameComplete()) {
+			Alert gameOverAlert = new Alert(Alert.AlertType.INFORMATION, "You have won the game!");
+			gameOverAlert.show();
+		}
 	}
 
 	/**

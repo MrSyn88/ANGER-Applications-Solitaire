@@ -83,6 +83,9 @@ public class Card {
 	 */
 	public Boolean isValidTableCard(Card otherCard) {
 		Integer thisCardValue = Card.valuesMap.get(this.getCardValue());
+		if (otherCard == null) {
+			return (thisCardValue == 13);
+		}
 		Integer otherCardValue = Card.valuesMap.get(otherCard.getCardValue());
 		// Return true if the other card is one higher than this card and they are not
 		// the same color
