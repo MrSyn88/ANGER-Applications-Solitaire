@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -19,7 +22,8 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#openPreferencesEventHandler" text="Preferences" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitGameEventHandler" text="Exit" />
+                  <MenuItem fx:id="goHomeItem" mnemonicParsing="false" onAction="#returnHomeEventHandler" text="Return Home" />
+                  <MenuItem fx:id="exitMenuItem1" mnemonicParsing="false" onAction="#exitGameEventHandler" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
