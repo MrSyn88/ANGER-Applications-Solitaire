@@ -3,8 +3,10 @@ package application.controller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,9 @@ public class GameController extends SuperController implements Initializable {
 	private Game newGame;
 	private Deque<Card> srcStack;
 	private Card cardToMove;
+	private Integer cardYOffset;
+	private Integer xMargin;
+	private Integer yMargin;
 	// private Game CurrentGame;
 
 	@FXML
@@ -45,20 +50,35 @@ public class GameController extends SuperController implements Initializable {
 		Deque<Card> destStack = null;
 
 		if (event.getY() < this.yLayout.get(1)) {
-			// If it's within the draw box, do this
+			// The only place you can put things in the top row are the foundations
 			if (event.getX() > this.xLayout.get(foundationIndices.get(0))) {
+				// Store the X to manipulate it
 				Double tempX = event.getX();
 				Integer foundationNum;
 				// Transform the X value for this index to find the relevant foundation number
 				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
 				tempX = tempX / (cardWidth + 15);
 				foundationNum = ((Double) Math.floor(tempX)).intValue();
-				System.out.println("Foundation number: " + foundationNum.toString());
+
+				// Set the destination stack based on where the user clicked, then move
 				destStack = newGame.getAFoundation(foundationNum);
 				newGame.moveCardToFoundation(cardToMove, srcStack, destStack);
-				System.out.println(srcStack);
-				System.out.println(destStack);
 			}
+		} else { // Handle putting cards in the stack here
+			// Store the X to manipulate
+			Double tempX = event.getX();
+
+			// Calculate which stack to grab cards from
+			tempX = tempX / (cardWidth + 15);
+			Integer stackNum = ((Double) Math.floor(tempX)).intValue();
+			destStack = newGame.getAPlayArea(stackNum);
+
+			if (destStack == srcStack) {
+				return;
+			} else {
+				newGame.moveCardToStack(cardToMove, srcStack, destStack);
+			}
+
 		}
 
 		drawCards();
@@ -73,19 +93,47 @@ public class GameController extends SuperController implements Initializable {
 			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
 				srcStack = this.newGame.getDrawDiscard();
 				cardToMove = srcStack.peek();
-			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) {
+			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) { // If it's in one of the
+																					// foundations, do this
+				// Store the X to manipulate it
 				Double tempX = event.getX();
 				Integer foundationNum;
+
 				// Transform the X value for this index to find the relevant foundation number
 				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
 				tempX = tempX / (cardWidth + 15);
 				foundationNum = ((Double) Math.floor(tempX)).intValue();
-				System.out.println("Foundation number: " + foundationNum.toString());
+
+				// Set the source stack based on the foundation number calculated
 				srcStack = newGame.getAFoundation(foundationNum);
 				cardToMove = srcStack.peek();
 
 			}
+		} else { // Handle getting cards from the stack in here
+					// Store the X to manipulate
+			Double tempX = event.getX();
+
+			// Calculate which stack to grab cards from
+			tempX = tempX / (cardWidth + 15);
+			Integer stackNum = ((Double) Math.floor(tempX)).intValue();
+			srcStack = newGame.getAPlayArea(stackNum);
+
+			// Figure out where in the stack the user clicked
+			Double bottomOfStack = ((srcStack.size() - 1) * cardYOffset) + cardWidth;
+			Double startOfLastCard = (double) ((srcStack.size() - 1) * cardYOffset);
+			Double tempY = event.getY();
+			tempY -= this.yLayout.get(1);
+
+			if (tempY > startOfLastCard && tempY < bottomOfStack) {
+				cardToMove = srcStack.peek();
+			} else if (tempY < startOfLastCard) {
+				Card[] stackArray = (Card[]) ((ArrayDeque<Card>) srcStack).toArray();
+				Integer index = ((Double) Math.floor(((startOfLastCard - tempY) / cardYOffset))).intValue() + 1;
+				cardToMove = stackArray[index];
+			}
+
 		}
+
 	}
 
 	@FXML
@@ -109,14 +157,17 @@ public class GameController extends SuperController implements Initializable {
 		// Set variables for the card height and width, with padding
 		cardHeight = (double) 90;
 		cardWidth = (double) 70;
+		cardYOffset = 20;
+		xMargin = 15;
+		yMargin = 20;
 		// Set the x and y values for the start of each card row & column
 		xLayout = new ArrayList<Double>();
 		for (int i = 0; i < 7; i++) {
-			xLayout.add(i * (cardWidth + 15));
+			xLayout.add(i * (cardWidth + xMargin));
 		}
 		yLayout = new ArrayList<Double>();
 		yLayout.add((double) 0);
-		yLayout.add(cardHeight + 20);
+		yLayout.add(cardHeight + yMargin);
 
 		drawIndices = new ArrayList<Integer>();
 		drawIndices.add(0);
@@ -198,17 +249,19 @@ public class GameController extends SuperController implements Initializable {
 			currentX = xLayout.get(i);
 			currentY = yLayout.get(1);
 			int offset = 0;
-			for (Card someCard : currentStack) {
+			Card someCard;
+			for (Iterator<Card> it = currentStack.descendingIterator(); it.hasNext();) {
+				someCard = it.next();
 				if (someCard.getIsFaceUp()) {
 					currentGC.drawImage(new Image(someCard.getFaceLocation().toURI().toString()), currentX,
 							currentY + offset,
 
 							cardWidth, cardHeight);
 				} else {
-					currentGC.drawImage(new Image(someCard.getFaceLocation().toURI().toString()), currentX,
+					currentGC.drawImage(new Image(appSettingsObject.getSelectedCardBack().toURI().toString()), currentX,
 							currentY + offset, cardWidth, cardHeight);
 				}
-				offset += 20;
+				offset += cardYOffset;
 			}
 		}
 

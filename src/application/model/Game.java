@@ -97,11 +97,12 @@ public class Game {
 		while (!source.peek().equals(cardToMove)) {
 			this.tempCardStack.push(source.pop());
 		}
-		dest.push(cardToMove);
+		dest.push(source.pop());
 		for (Card currentCard : this.tempCardStack) {
 			dest.push(currentCard);
 		}
 		this.tempCardStack.clear();
+		source.peek().setIsFaceUp(true);
 	}
 
 	/**
@@ -113,7 +114,6 @@ public class Game {
 		if (source == dest) {
 			return;
 		} else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
-			System.out.println(dest.peek());
 			// Can't move a card if it's not face up
 			return;
 		} else if (source.peek() != cardToMove) {
@@ -121,10 +121,10 @@ public class Game {
 		}
 
 		dest.push(source.pop());
-		this.checkGameComplete();
+		source.peek().setIsFaceUp(true);
 	}
 
-	private Boolean checkGameComplete() {
+	public Boolean checkGameComplete() {
 		Boolean isGameDone = true;
 		for (Deque<Card> currentPlayArea : this.playArea) {
 			isGameDone = isGameDone && currentPlayArea.isEmpty();

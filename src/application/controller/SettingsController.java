@@ -80,12 +80,16 @@ public class SettingsController extends SuperController {
 		this.solveableSelection.selectedProperty().bindBidirectional(this.appSettingsObject.solveableProperty());
 		this.showTimeSelection.selectedProperty().bindBidirectional(this.appSettingsObject.showTimesProperty());
 
+		// Get all card back options from the settings object, then update the list, and
+		// select the previously chosen selection
 		cardBackSelector.getItems().addAll(appSettingsObject.getCardBacks().keySet());
 		cardBackSelector.getSelectionModel().select(appSettingsObject.getSelectedBackIndex());
 		appSettingsObject.getSelectedBackIndexProperty()
 				.bind(cardBackSelector.getSelectionModel().selectedIndexProperty());
 		appSettingsObject.setSelectedCardBack(cardBackSelector.getSelectionModel().getSelectedItem());
 
+		// Add the available draw types, then bind the selected one to the draw type
+		// integer in the settings object
 		drawTypeSelector.getItems().add("1-Card draw");
 		drawTypeSelector.getItems().add("3-Card draw");
 		drawTypeSelector.getSelectionModel().select(appSettingsObject.getDrawType());
@@ -103,6 +107,7 @@ public class SettingsController extends SuperController {
 			e.printStackTrace();
 		}
 		// Restore the old center pane to the main pane
+		((GameController) this.appControllerMap.get("gameController")).drawCards();
 		((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
 	}
 
@@ -132,6 +137,7 @@ public class SettingsController extends SuperController {
 		this.showTimeSelection.setSelected(this.oldShowTime);
 
 		// Restore the old center pane to the main pane
+		((GameController) this.appControllerMap.get("gameController")).drawCards();
 		((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
 	}
 
