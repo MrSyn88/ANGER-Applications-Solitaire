@@ -28,6 +28,7 @@ public class SolitaireSettings {
 	private BooleanProperty showTimes = new SimpleBooleanProperty();
 	private BooleanProperty solveable = new SimpleBooleanProperty();
 	private IntegerProperty selectedBackIndex = new SimpleIntegerProperty();
+	private IntegerProperty drawType = new SimpleIntegerProperty();
 	private File selectedCardBack;
 	private File cardBackLocation = new File("src/application/view/Backs");
 	private Map<String, File> cardBacks;
@@ -93,6 +94,7 @@ public class SolitaireSettings {
 			}
 		}
 		setSelectedBackIndex(0);
+		setDrawType(0);
 
 	}
 
@@ -249,6 +251,27 @@ public class SolitaireSettings {
 	}
 
 	/**
+	 * @return the drawType
+	 */
+	public IntegerProperty getDrawTypeProperty() {
+		return drawType;
+	}
+
+	/**
+	 * @param drawType the drawType to set
+	 */
+	public void setDrawType(Integer drawType) {
+		this.drawType.setValue(drawType);
+	}
+
+	/**
+	 * @return
+	 */
+	public Integer getDrawType() {
+		return this.drawType.getValue();
+	}
+
+	/**
 	 * @return the cardBacks
 	 */
 	public Map<String, File> getCardBacks() {
@@ -282,6 +305,7 @@ public class SolitaireSettings {
 		outFile.println(getShowTimes());
 		outFile.println(getSelectedCardBack());
 		outFile.println(getSelectedBackIndex());
+		outFile.println(getDrawType());
 
 		outFile.close();
 	}
@@ -316,10 +340,14 @@ public class SolitaireSettings {
 			setSelectedCardBack(inScan.next());
 		else
 			setSelectedCardBack("");
-		if(inScan.hasNextInt())
+		if (inScan.hasNextInt())
 			setSelectedBackIndex(inScan.nextInt());
 		else
 			setSelectedBackIndex(0);
+		if (inScan.hasNextInt())
+			setDrawType(inScan.nextInt());
+		else
+			setDrawType(0);
 
 		inScan.close();
 	}

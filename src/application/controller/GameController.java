@@ -29,7 +29,7 @@ public class GameController extends SuperController implements Initializable {
 	private List<Integer> foundationIndices;
 	private SolitaireSettings appSettingsObject;
 	private Game newGame;
-	private Game CurrentGame;
+	// private Game CurrentGame;
 
 	@FXML
 	private Canvas gameCanvas;
@@ -37,47 +37,32 @@ public class GameController extends SuperController implements Initializable {
 	private Button DrawCardButton;
 
 	@FXML
-    void validMove(ActionEvent event) {
+	void validMove(ActionEvent event) {
 //		Source src = getSrc();
-    }
+	}
 
-    @FXML
-    void getSrc(ActionEvent event) {
+	@FXML
+	void getSrc(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void getDest(ActionEvent event) {
+	@FXML
+	void getDest(ActionEvent event) {
 
-    }
-    
-    @FXML
-    void Draw(ActionEvent event) {
-    	
-    	Deque<Card> drawStack = CurrentGame.getDraw();
-		Deque<Card> drawDiscard = CurrentGame.getDrawDiscard();
-		
-		if(drawStack.isEmpty()) {
-			for (Card currentCard : drawDiscard) {
-				currentCard.setIsFaceUp(false);
-				drawStack.push(currentCard);
-			}
-			drawDiscard.clear();
-		}
-		else {
-			drawStack.peek().setIsFaceUp(true);
-			drawDiscard.push(drawStack.pop());
-		}
-		
-		drawCards(CurrentGame);
-		
-    }
-    
-    public void setGame(Game game)
-    {
-    	CurrentGame = game;
-    }
-    
+	}
+
+	@FXML
+	void Draw(ActionEvent event) {
+
+		newGame.drawNextCard();
+		drawCards();
+
+	}
+
+	public void setGame(Game game) {
+		newGame = game;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Set variables for the card height and width, with padding
@@ -106,7 +91,17 @@ public class GameController extends SuperController implements Initializable {
 		newGame.startNewGame();
 	}
 
-	public void drawCards(Game runningGame) {
+	public void drawCards() {
+		// Clear the entire canvas, so we don't get any duplicate cards
+		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
+		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+
+		// Draw the whole table for the game
+		drawTop(this.newGame);
+		drawStacks(this.newGame);
+	}
+
+	public void drawTop(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 
 		Deque<Card> drawStack = runningGame.getDraw();
@@ -129,6 +124,7 @@ public class GameController extends SuperController implements Initializable {
 		}
 
 	}
+
 	public void drawStacks(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 		Double currentX;
@@ -183,6 +179,7 @@ public class GameController extends SuperController implements Initializable {
 	 */
 	public void setAppSettingsObject(SolitaireSettings appSettingsObject) {
 		this.appSettingsObject = appSettingsObject;
+		this.newGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
 	}
 
 	/**

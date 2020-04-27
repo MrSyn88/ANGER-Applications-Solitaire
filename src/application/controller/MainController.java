@@ -58,9 +58,7 @@ public class MainController extends SuperController {
 		System.out.println("Starting a new game");
 		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
 		GameController currentGame = (GameController) appControllerMap.get("gameController");
-		currentGame.drawCards(currentGame.getNewGame());
-		currentGame.drawStacks(currentGame.getNewGame());
-		currentGame.setGame(currentGame.getNewGame());
+		currentGame.drawCards();
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction

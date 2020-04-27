@@ -85,6 +85,11 @@ public class SettingsController extends SuperController {
 		appSettingsObject.getSelectedBackIndexProperty()
 				.bind(cardBackSelector.getSelectionModel().selectedIndexProperty());
 		appSettingsObject.setSelectedCardBack(cardBackSelector.getSelectionModel().getSelectedItem());
+
+		drawTypeSelector.getItems().add("1-Card draw");
+		drawTypeSelector.getItems().add("3-Card draw");
+		drawTypeSelector.getSelectionModel().select(appSettingsObject.getDrawType());
+		appSettingsObject.getDrawTypeProperty().bind(drawTypeSelector.getSelectionModel().selectedIndexProperty());
 	}
 
 	@FXML

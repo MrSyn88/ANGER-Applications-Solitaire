@@ -15,7 +15,8 @@ public class Game {
 	private Deque<Card> tempCardStack;
 	private Deque<Card> drawDiscard;
 
-	private IntegerProperty drawNumber;
+	private IntegerProperty drawType;
+	private static Integer[] drawNumber = { 1, 3 };
 
 	private List<Deque<Card>> playArea;
 
@@ -40,8 +41,8 @@ public class Game {
 		for (int i = 0; i < 7; i++) {
 			this.playArea.add(i, new ArrayDeque<Card>(i + 1));
 		}
-		this.drawNumber = new SimpleIntegerProperty();
-		this.setDrawNumber(3);
+		this.drawType = new SimpleIntegerProperty();
+		this.setDrawType(3);
 	}
 
 	public void startNewGame() {
@@ -76,7 +77,7 @@ public class Game {
 
 		// Otherwise, move up to the draw number of cards from the draw stack to the
 		// draw discard stack
-		for (int i = 0; i < this.getDrawNumber() && !this.draw.isEmpty(); i++) {
+		for (int i = 0; i < Game.drawNumber[this.getDrawType()] && !this.draw.isEmpty(); i++) {
 			this.draw.peek().setIsFaceUp(true);
 			this.drawDiscard.push(this.draw.pop());
 		}
@@ -212,24 +213,24 @@ public class Game {
 	}
 
 	/**
-	 * @return the drawNumber
+	 * @return the drawType
 	 */
-	public Integer getDrawNumber() {
-		return drawNumber.getValue();
+	public Integer getDrawType() {
+		return drawType.getValue();
 	}
 
 	/**
-	 * @param drawNumber the drawNumber to set
+	 * @param drawType the drawType to set
 	 */
-	public void setDrawNumber(Integer drawNumber) {
-		this.drawNumber.setValue(drawNumber);
+	public void setDrawType(Integer drawNumber) {
+		this.drawType.setValue(drawNumber);
 	}
 
-	public IntegerProperty getDrawNumberProperty() {
-		if (this.drawNumber == null) {
-			this.drawNumber = new SimpleIntegerProperty();
+	public IntegerProperty getDrawTypeProperty() {
+		if (this.drawType == null) {
+			this.drawType = new SimpleIntegerProperty();
 		}
-		return this.drawNumber;
+		return this.drawType;
 	}
 
 }
