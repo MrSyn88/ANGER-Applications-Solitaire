@@ -2,13 +2,17 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+/**
+ * Controller for the Pane created in Title.fxml. Most functionality here is
+ * duplicated in the MainController, so event handlers here are mostly used to
+ * call the event handlers for the MainController
+ */
 public class TitleController extends SuperController {
 	@FXML
 	private ResourceBundle resources;
@@ -47,7 +51,7 @@ public class TitleController extends SuperController {
 
 	@FXML
 	void loadLeaderBoard(ActionEvent event) {
-		
+
 	}
 
 	@FXML
