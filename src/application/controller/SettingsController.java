@@ -1,15 +1,7 @@
 package application.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 import application.model.SolitaireSettings;
 import javafx.event.ActionEvent;
 
@@ -32,7 +24,6 @@ public class SettingsController extends SuperController {
 	private Boolean oldUndo;
 	private Boolean oldSolveable;
 	private Boolean oldShowTime;
-	private String oldCardBack;
 	private Integer oldDrawType;
 	private Integer oldCardBackIndex;
 
@@ -198,7 +189,6 @@ public class SettingsController extends SuperController {
 		this.oldUndo = this.undoSelection.isSelected();
 		this.oldSolveable = this.solveableSelection.isSelected();
 		this.oldShowTime = this.showTimeSelection.isSelected();
-		this.oldCardBack = this.cardBackSelector.getSelectionModel().getSelectedItem();
 		this.oldCardBackIndex = this.cardBackSelector.getSelectionModel().getSelectedIndex();
 		this.oldDrawType = this.drawTypeSelector.getSelectionModel().getSelectedIndex();
 	}

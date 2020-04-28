@@ -44,6 +44,9 @@ public class GameController extends SuperController implements Initializable {
 	@FXML
 	private Button DrawCardButton;
 
+	/**
+	 * @param event
+	 */
 	@FXML
 	void dropCard(MouseEvent event) {
 		Deque<Card> destStack = null;
@@ -84,6 +87,9 @@ public class GameController extends SuperController implements Initializable {
 		drawCards();
 	}
 
+	/**
+	 * @param event
+	 */
 	@FXML
 	void pickUpCard(MouseEvent event) {
 		this.srcStack = null;
@@ -141,10 +147,16 @@ public class GameController extends SuperController implements Initializable {
 
 	}
 
+	/**
+	 * @param event
+	 */
 	@FXML
 	void dragCard(MouseEvent event) {
 	}
 
+	/**
+	 * @param event
+	 */
 	@FXML
 	void Draw(ActionEvent event) {
 
@@ -153,10 +165,16 @@ public class GameController extends SuperController implements Initializable {
 
 	}
 
+	/**
+	 * @param game
+	 */
 	public void setGame(Game game) {
 		currentGame = game;
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// gamePane.setPrefWidth(900);
@@ -193,6 +211,9 @@ public class GameController extends SuperController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void updateValues() {
 
 		cardHeight = gameCanvas.getHeight() / 4;
@@ -216,13 +237,14 @@ public class GameController extends SuperController implements Initializable {
 		// Clear the entire canvas, so we don't get any duplicate cards
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
 		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
-
-		// Draw the whole table for the game
-		drawTop(this.currentGame);
-		drawStacks(this.currentGame);
-		if (this.currentGame.checkGameComplete()) {
-			Alert gameOverAlert = new Alert(Alert.AlertType.INFORMATION, "You have won the game!");
-			gameOverAlert.show();
+		if (this.currentGame != null) {
+			// Draw the whole table for the game
+			drawTop(this.currentGame);
+			drawStacks(this.currentGame);
+			if (this.currentGame.checkGameComplete()) {
+				Alert gameOverAlert = new Alert(Alert.AlertType.INFORMATION, "You have won the game!");
+				gameOverAlert.show();
+			}
 		}
 	}
 
@@ -253,6 +275,9 @@ public class GameController extends SuperController implements Initializable {
 
 	}
 
+	/**
+	 * @param runningGame
+	 */
 	public void drawStacks(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 		Double currentX;
@@ -319,12 +344,12 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/**
-	 * @param currentGame the currentGame to set
+	 * @param newGame The new Game to set currentGame to
 	 */
 	public void setCurrentGame(Game newGame) {
 		this.currentGame = newGame;
 		this.currentGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
-		currentGame.startNewGame();
+		this.currentGame.startNewGame();
 	}
 
 }

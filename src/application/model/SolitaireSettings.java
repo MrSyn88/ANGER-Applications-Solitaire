@@ -4,8 +4,6 @@
 package application.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -85,8 +83,8 @@ public class SolitaireSettings {
 		setMusicVolume(50.0);
 		setEffectsVolume(50.0);
 		setUndoable(true);
-		setSolveable(true);
-		setShowTimes(true);
+		setSolveable(false);
+		setShowTimes(false);
 		if (!cardBacks.isEmpty()) {
 			for (String key : cardBacks.keySet()) {
 				setSelectedCardBack(key);
@@ -311,43 +309,26 @@ public class SolitaireSettings {
 	}
 
 	public void loadSettings(File settingsFile) throws IOException {
+		this.setDefaults();
 		Scanner inScan = new Scanner(settingsFile);
 		if (inScan.hasNextDouble())
 			setMasterVolume(inScan.nextDouble());
-		else
-			setMasterVolume(50.0);
 		if (inScan.hasNextDouble())
 			setMusicVolume(inScan.nextDouble());
-		else
-			setMusicVolume(50.0);
 		if (inScan.hasNextDouble())
 			setEffectsVolume(inScan.nextDouble());
-		else
-			setEffectsVolume(50.0);
 		if (inScan.hasNextDouble())
 			setUndoable(inScan.nextBoolean());
-		else
-			setUndoable(true);
 		if (inScan.hasNextDouble())
 			setSolveable(inScan.nextBoolean());
-		else
-			setSolveable(true);
 		if (inScan.hasNextDouble())
 			setShowTimes(inScan.nextBoolean());
-		else
-			setShowTimes(true);
 		if (inScan.hasNext())
 			setSelectedCardBack(inScan.next());
-		else
-			setSelectedCardBack("");
 		if (inScan.hasNextInt())
 			setSelectedBackIndex(inScan.nextInt());
-		else
-			setSelectedBackIndex(0);
 		if (inScan.hasNextInt())
 			setDrawType(inScan.nextInt());
-		else
-			setDrawType(0);
 
 		inScan.close();
 	}
