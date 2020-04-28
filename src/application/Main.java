@@ -129,10 +129,22 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	/**
+	 * Getter for the paneMap that holds all the Panes used in the application
+	 * 
+	 * @return A HashMap<String, Object> that holds references to all loaded panes
+	 */
 	public HashMap<String, Object> getPaneMap() {
 		return paneMap;
 	}
 
+	/**
+	 * Getter for the controllerMap that holds all the controllers used in the
+	 * application
+	 * 
+	 * @return A HashMap<String, SuperController> that holds references to all
+	 *         loaded controllers
+	 */
 	public HashMap<String, SuperController> getControllerMap() {
 		return controllerMap;
 	}

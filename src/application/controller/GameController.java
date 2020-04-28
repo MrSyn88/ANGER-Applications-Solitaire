@@ -348,7 +348,6 @@ public class GameController extends SuperController implements Initializable {
 	public void setCurrentGame(Game newGame) {
 		this.currentGame = newGame;
 		this.currentGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
-		this.currentGame.startNewGame();
 	}
 
 }

@@ -8,18 +8,28 @@ import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * Class that models a game of solitaire to use as a model for the game
+ * presented to the user. It uses a Deck object that has been shuffled to
+ * populate Deques used as stacks to represent literal stacks of cards.
+ */
 public class Game {
 	private Deck gameDeck;
 	private List<Deque<Card>> foundations;
 	private Deque<Card> draw;
 	private Deque<Card> tempCardStack;
 	private Deque<Card> drawDiscard;
-
 	private IntegerProperty drawType;
 	private static Integer[] drawNumber = { 1, 3 };
-
 	private List<Deque<Card>> playArea;
 
+	/**
+	 * Constructor with no arguments. When it is called, it creates a new Deck.
+	 * Then, each of the stacks are initialized, the drawType property is created,
+	 * and the default draw number is set to 3. The startNewGame method is then
+	 * called in order to populate each of the stacks with the proper number of
+	 * cards
+	 */
 	public Game() {
 		// Create a new Deck
 		setGameDeck(new Deck());
@@ -43,11 +53,21 @@ public class Game {
 		}
 		this.drawType = new SimpleIntegerProperty();
 		this.setDrawType(3);
+		this.startNewGame();
 	}
 
+	/**
+	 * Constructor used to repeat a game. When it is called, it creates a new Deck
+	 * that is a copy of the passed oldDeck. Then, each of the stacks are
+	 * initialized, the drawType property is created, and the default draw number is
+	 * set to 3. The startNewGame method is then called in order to populate each of
+	 * the stacks with the proper number of cards
+	 * 
+	 * @param oldDeck The deck to be used as to populate the game
+	 */
 	public Game(Deck oldDeck) {
 		// Create a new Deck
-		setGameDeck(oldDeck);
+		setGameDeck(new Deck(oldDeck));
 		// Initialize the "foundations", or the 4 spaces to put each solved suit, by
 		// created a new Deque for each position
 		this.foundations = new ArrayList<Deque<Card>>();
@@ -68,8 +88,15 @@ public class Game {
 		}
 		this.drawType = new SimpleIntegerProperty();
 		this.setDrawType(3);
+		this.startNewGame();
 	}
 
+	/**
+	 * This method needs to be called in order to fill each stack with the proper
+	 * number of cards in the correct order. It 'deals' cards from the deck in much
+	 * the same way as would be done if playing a normal game of solitaire
+	 * 
+	 */
 	public void startNewGame() {
 		for (int i = 0; i < 7; i++) {
 			for (int j = i; j < 7; j++) {
@@ -85,7 +112,10 @@ public class Game {
 	}
 
 	/**
-	 * Function that draws the next card from the top of the draw pile
+	 * Function that draws the next card from the top of the draw pile. If the draw
+	 * pile is not empty, then it takes the proper number of cards from the top. It
+	 * stops drawing cards when the draw stack is empty. If the draw stack is empty,
+	 * then it moves all cards back over to the draw stack
 	 * 
 	 */
 	public void drawNextCard() {
@@ -109,9 +139,17 @@ public class Game {
 	}
 
 	/**
-	 * @param cardToMove
-	 * @param sourceColumn
-	 * @param destColumn
+	 * Move a card from any stack to one of the playArea stacks. The main different
+	 * between this function and moveCardToFoundation is which card checking
+	 * function is called. If it is valid, then all cards above the card to be moved
+	 * are moved with it. This method does not necessarily move a card if the move
+	 * is not valid
+	 * 
+	 * @param cardToMove   The card that is being moved
+	 * @param sourceColumn A reference to the stack that the cardToMove is coming
+	 *                     from
+	 * @param destColumn   A reference to the stack that the cardToMove is trying to
+	 *                     be moved to
 	 */
 	public void moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
@@ -135,9 +173,17 @@ public class Game {
 	}
 
 	/**
-	 * @param cardToMove
-	 * @param source
-	 * @param dest
+	 * Move a card from any stack to one of the foundation stacks. The main
+	 * different between this function and moveCardToStack is which card checking
+	 * function is called. If it is valid, then all cards above the card to be moved
+	 * are moved with it. This method does not necessarily move a card if the move
+	 * is not valid
+	 * 
+	 * @param cardToMove   The card that is being moved
+	 * @param sourceColumn A reference to the stack that the cardToMove is coming
+	 *                     from
+	 * @param destColumn   A reference to the stack that the cardToMove is trying to
+	 *                     be moved to
 	 */
 	public void moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
@@ -154,6 +200,12 @@ public class Game {
 			source.peek().setIsFaceUp(true);
 	}
 
+	/**
+	 * Checks to see if this Game can be considered complete. It is considered
+	 * complete if every non-foundation stack is empty
+	 * 
+	 * @return True if the game is complete, false otherwise
+	 */
 	public Boolean checkGameComplete() {
 		Boolean isGameDone = true;
 		for (Deque<Card> currentPlayArea : this.playArea) {
@@ -169,6 +221,8 @@ public class Game {
 	}
 
 	/**
+	 * Getter for the current Game's deck
+	 * 
 	 * @return the gameDeck
 	 */
 	public Deck getGameDeck() {
@@ -176,63 +230,63 @@ public class Game {
 	}
 
 	/**
-	 * @param gameDeck the gameDeck to set
+	 * Setter for the current Game's deck
+	 * 
+	 * @param gameDeck A deck to be used as the gameDeck
 	 */
 	public void setGameDeck(Deck gameDeck) {
 		this.gameDeck = gameDeck;
 	}
 
 	/**
-	 * @return the draw
+	 * Getter for the draw stack
+	 * 
+	 * @return the Deque that represents the draw stack
 	 */
 	public Deque<Card> getDraw() {
 		return draw;
 	}
 
 	/**
-	 * @param draw the draw to set
-	 */
-	public void setDraw(Deque<Card> draw) {
-		this.draw = draw;
-	}
-
-	/**
-	 * @return the foundations
+	 * Getter for the list of foundations
+	 * 
+	 * @return List of Deques that represent the foundations
 	 */
 	public List<Deque<Card>> getFoundations() {
 		return foundations;
 	}
 
 	/**
-	 * @param index
-	 * @return
+	 * Getter for any particular foundation
+	 * 
+	 * @param index a number from 0 to 3 that references which foundation to get
+	 * @return A Deque that represents the requested foundation stack
 	 */
 	public Deque<Card> getAFoundation(Integer index) {
 		return foundations.get(index);
 	}
 
 	/**
-	 * @return the drawDiscard
+	 * Getter for the drawDiscard Deque
+	 * 
+	 * @return the Deque representing the drawDiscard
 	 */
 	public Deque<Card> getDrawDiscard() {
 		return drawDiscard;
 	}
 
 	/**
-	 * @param drawDiscard the drawDiscard to set
-	 */
-	public void setDrawDiscard(Deque<Card> drawDiscard) {
-		this.drawDiscard = drawDiscard;
-	}
-
-	/**
-	 * @return the tempCardStack
+	 * Getter for the tempCardStack
+	 * 
+	 * @return the tempCardStack Deque
 	 */
 	public Deque<Card> getTempCardStack() {
 		return tempCardStack;
 	}
 
 	/**
+	 * Getter for the list of Deques that represent the playArea
+	 * 
 	 * @return the playArea
 	 */
 	public List<Deque<Card>> getPlayArea() {
@@ -240,14 +294,18 @@ public class Game {
 	}
 
 	/**
-	 * @param index
-	 * @return
+	 * Getter for a particular stack in the playArea
+	 * 
+	 * @param index a number from 0 to 6 that references the playArea stack desired
+	 * @return a Deque that represents the playArea stack requested
 	 */
 	public Deque<Card> getAPlayArea(Integer index) {
 		return playArea.get(index);
 	}
 
 	/**
+	 * Getter for the drawType, or number of cards to draw at a time
+	 * 
 	 * @return the drawType
 	 */
 	public Integer getDrawType() {
@@ -255,12 +313,19 @@ public class Game {
 	}
 
 	/**
-	 * @param drawType the drawType to set
+	 * Setter for the drawType, or number of cards to draw at a time
+	 * 
+	 * @param drawType How many cards to set the drawType to
 	 */
 	public void setDrawType(Integer drawNumber) {
 		this.drawType.setValue(drawNumber);
 	}
 
+	/**
+	 * Getter for the IntegerProperty that represents the drawType
+	 * 
+	 * @return the drawType as an integer property
+	 */
 	public IntegerProperty getDrawTypeProperty() {
 		if (this.drawType == null) {
 			this.drawType = new SimpleIntegerProperty();

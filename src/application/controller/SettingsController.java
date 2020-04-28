@@ -71,7 +71,7 @@ public class SettingsController extends SuperController {
 		this.musicVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.musicVolumeProperty());
 		this.effectsVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.effectsVolumeProperty());
 		this.undoSelection.selectedProperty().bindBidirectional(this.appSettingsObject.undoableProperty());
-		this.solveableSelection.selectedProperty().bindBidirectional(this.appSettingsObject.solveableProperty());
+		this.solveableSelection.selectedProperty().bindBidirectional(this.appSettingsObject.solvableProperty());
 		this.showTimeSelection.selectedProperty().bindBidirectional(this.appSettingsObject.showTimesProperty());
 
 		// Get all card back options from the settings object, then update the list, and
