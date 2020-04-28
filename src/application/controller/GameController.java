@@ -216,8 +216,8 @@ public class GameController extends SuperController implements Initializable {
 	 */
 	public void updateValues() {
 
-		cardHeight = gameCanvas.getHeight() / 4;
-		cardWidth = cardHeight / 1.4529;
+		cardWidth = gameCanvas.getWidth() / 8;
+		cardHeight = cardWidth * 1.4529;
 		cardYOffset = (int) (cardHeight / 8);
 
 		for (int i = 0; i < 7; i++) {
@@ -309,13 +309,12 @@ public class GameController extends SuperController implements Initializable {
 				someCard = it.next();
 				if (someCard.getIsFaceUp()) {
 					currentGC.drawImage(new Image(someCard.getFaceLocation().toURI().toString()), currentX,
-							currentY + offset,
-
-							cardWidth, cardHeight);
+							currentY + offset, cardWidth, cardHeight);
 				} else {
 					currentGC.drawImage(new Image(appSettingsObject.getSelectedCardBack().toURI().toString()), currentX,
 							currentY + offset, cardWidth, cardHeight);
 				}
+
 				offset += cardYOffset;
 			}
 		}

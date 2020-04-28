@@ -45,6 +45,31 @@ public class Game {
 		this.setDrawType(3);
 	}
 
+	public Game(Deck oldDeck) {
+		// Create a new Deck
+		setGameDeck(oldDeck);
+		// Initialize the "foundations", or the 4 spaces to put each solved suit, by
+		// created a new Deque for each position
+		this.foundations = new ArrayList<Deque<Card>>();
+		for (int i = 0; i < 4; i++) {
+			this.foundations.add(new ArrayDeque<Card>());
+		}
+
+		// Add a new Deque for the draw pile
+		this.draw = new ArrayDeque<Card>();
+		this.drawDiscard = new ArrayDeque<Card>();
+		// Add a new Deque to hold cards that are being moved
+		this.tempCardStack = new ArrayDeque<Card>();
+
+		// Initialize the 7 card Deques for the play area
+		this.playArea = new ArrayList<Deque<Card>>(7);
+		for (int i = 0; i < 7; i++) {
+			this.playArea.add(i, new ArrayDeque<Card>(i + 1));
+		}
+		this.drawType = new SimpleIntegerProperty();
+		this.setDrawType(3);
+	}
+
 	public void startNewGame() {
 		for (int i = 0; i < 7; i++) {
 			for (int j = i; j < 7; j++) {

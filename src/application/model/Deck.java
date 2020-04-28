@@ -23,6 +23,12 @@ public class Deck extends ArrayList<Card> {
 
 	}
 
+	public Deck(Deck oldDeck) {
+		for (Card currentCard : oldDeck) {
+			this.add(new Card(currentCard.getCardSuit(), currentCard.getCardValue()));
+		}
+	}
+
 	public void shuffle() {
 		Collections.shuffle(this);
 	}
