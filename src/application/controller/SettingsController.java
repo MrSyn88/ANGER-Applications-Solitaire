@@ -16,7 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Slider;
 
 import javafx.scene.control.ComboBox;
-
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
@@ -32,6 +32,9 @@ public class SettingsController extends SuperController {
 	private Boolean oldUndo;
 	private Boolean oldSolveable;
 	private Boolean oldShowTime;
+	private String oldCardBack;
+	private Integer oldDrawType;
+	private Integer oldCardBackIndex;
 
 	@FXML
 	private ComboBox<String> cardBackSelector;
@@ -87,6 +90,7 @@ public class SettingsController extends SuperController {
 		appSettingsObject.getSelectedBackIndexProperty()
 				.bind(cardBackSelector.getSelectionModel().selectedIndexProperty());
 		appSettingsObject.setSelectedCardBack(cardBackSelector.getSelectionModel().getSelectedItem());
+		updateCardBack(new ActionEvent());
 
 		// Add the available draw types, then bind the selected one to the draw type
 		// integer in the settings object
@@ -136,6 +140,11 @@ public class SettingsController extends SuperController {
 		this.solveableSelection.setSelected(this.oldSolveable);
 		this.showTimeSelection.setSelected(this.oldShowTime);
 
+		this.cardBackSelector.getSelectionModel().select(this.oldCardBackIndex);
+		updateCardBack(event);
+
+		this.drawTypeSelector.getSelectionModel().select(this.oldDrawType);
+
 		// Restore the old center pane to the main pane
 		((GameController) this.appControllerMap.get("gameController")).drawCards();
 		((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
@@ -145,6 +154,7 @@ public class SettingsController extends SuperController {
 	@FXML
 	public void updateCardBack(ActionEvent event) {
 		appSettingsObject.setSelectedCardBack(cardBackSelector.getSelectionModel().getSelectedItem());
+		cardBackPreview.setImage(new Image(appSettingsObject.getSelectedCardBack().toURI().toString()));
 	}
 
 	// Event Listener on ComboBox[#drawTypeSelector].onAction
@@ -188,6 +198,9 @@ public class SettingsController extends SuperController {
 		this.oldUndo = this.undoSelection.isSelected();
 		this.oldSolveable = this.solveableSelection.isSelected();
 		this.oldShowTime = this.showTimeSelection.isSelected();
+		this.oldCardBack = this.cardBackSelector.getSelectionModel().getSelectedItem();
+		this.oldCardBackIndex = this.cardBackSelector.getSelectionModel().getSelectedIndex();
+		this.oldDrawType = this.drawTypeSelector.getSelectionModel().getSelectedIndex();
 	}
 
 }

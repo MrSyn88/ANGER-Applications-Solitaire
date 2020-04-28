@@ -44,7 +44,7 @@ public class SolitaireSettings {
 		File[] fileList = cardBackLocation.listFiles();
 		cardBacks = new HashMap<String, File>();
 		for (File cardBack : fileList) {
-			cardBacks.put(cardBack.getName(), cardBack);
+			cardBacks.put(cardBack.getName().substring(0, cardBack.getName().lastIndexOf('.')), cardBack);
 		}
 
 		if (this.settingsFile.exists()) {
@@ -70,7 +70,7 @@ public class SolitaireSettings {
 		File[] fileList = cardBackLocation.listFiles();
 		cardBacks = new HashMap<String, File>();
 		for (File cardBack : fileList) {
-			cardBacks.put(cardBack.getName(), cardBack);
+			cardBacks.put(cardBack.getName().substring(0, cardBack.getName().lastIndexOf('.')), cardBack);
 		}
 
 		if (this.settingsFile.exists()) {
