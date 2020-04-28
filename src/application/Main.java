@@ -102,6 +102,7 @@ public class Main extends Application {
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.volumeProperty().bind(this.settingsObject.musicVolumeProperty()
 					.multiply(this.settingsObject.masterVolumeProperty()).divide(10000));
+			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 			mediaPlayer.play();
 
 		} catch (Exception e) {
