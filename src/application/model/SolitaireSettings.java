@@ -17,6 +17,17 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * This class contains the settings for the entire application. Most settings
+ * are held in Properties, to allow easy binding of controls to values. In some
+ * cases, this is not feasible, such as with the selectedCardBack. In this case,
+ * a map is used to map strings to Files, and the currently selected one is
+ * easily referenced by controller classes for the drawing of card backs
+ * 
+ * The class also enables saving settings to the disk, by default to a file
+ * called settings.txt. An alternate constructor is available to specify the
+ * settings file at construction time
+ */
 public class SolitaireSettings {
 
 	private DoubleProperty masterVolume = new SimpleDoubleProperty();
@@ -33,10 +44,13 @@ public class SolitaireSettings {
 	private File settingsFile;
 
 	/**
-	 * 
+	 * Constructor with no arguments. Default settings file is "ssettings.txt". This
+	 * loads up every file in the cardBackLocation folder and puts in in a map.
+	 * After that, it loads up every setting from the current settingsFile if it
+	 * exists. If it does not, it sets all settings to the default, as defined in
+	 * the setDefaults function.
 	 */
 	public SolitaireSettings() {
-		super();
 
 		this.settingsFile = new File("settings.txt");
 		File[] fileList = cardBackLocation.listFiles();
@@ -49,7 +63,6 @@ public class SolitaireSettings {
 			try {
 				this.loadSettings();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -63,7 +76,6 @@ public class SolitaireSettings {
 	 * @throws IOException
 	 */
 	public SolitaireSettings(File settingsFile) throws IOException {
-		super();
 		this.settingsFile = settingsFile;
 		File[] fileList = cardBackLocation.listFiles();
 		cardBacks = new HashMap<String, File>();

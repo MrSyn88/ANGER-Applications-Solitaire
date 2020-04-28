@@ -19,6 +19,21 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * The main class for the application. This loads every FXML and stores them in
+ * a HashMap in order to be able to add an arbitrary number of them. Similarly,
+ * it stores every controller in a HashMap.
+ * 
+ * SolitaireSettings is the class that holds all settings for the application.
+ * It is initialized here, then a reference is passed to all controllers that
+ * need it.
+ * 
+ * Structurally, this application consists of a main pane, which is a BorderPane
+ * that holds a menubar at the top. Switching between different views of the
+ * application is done by loading different panes into the center of the main
+ * BorderPane, allowing the menu to stay consistent between differente parts of
+ * the application
+ */
 public class Main extends Application {
 	// Store an arbitrary number of panes and controllers
 	private HashMap<String, Object> paneMap;
