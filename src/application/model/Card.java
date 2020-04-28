@@ -5,6 +5,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that models cards and some of the relationships between them. Cards
+ * values are represented by a pair of single character strings, one for suit
+ * and one for value. There are static Maps that translate the strings to values
+ * for some lookup functions
+ */
 public class Card {
 	private static final Map<String, String> suitsMap;
 	private static final Map<String, Integer> valuesMap;
@@ -40,6 +46,10 @@ public class Card {
 	private Boolean isFaceUp;
 
 	/**
+	 * Function that gets the location of the image that corresponds to the face of
+	 * a particular card
+	 * 
+	 * 
 	 * @param suit  A one character code to match a suit
 	 * @param value The face value of the card
 	 * @return A file object for the given suit and value
@@ -49,6 +59,8 @@ public class Card {
 	}
 
 	/**
+	 * A wrapper for the static method that gets the location of this card
+	 * 
 	 * @return A file object that matches the face of this card
 	 */
 	public File getFaceLocation() {
@@ -78,8 +90,9 @@ public class Card {
 	 * Function to return whether it is valid to put a card on top of another card
 	 * that is face-up and in play
 	 * 
-	 * @param otherCard
-	 * @return
+	 * @param otherCard the card this card is being checked against
+	 * @return Whether or not this card is able to be played on top of the other
+	 *         card on the table
 	 */
 	public Boolean isValidTableCard(Card otherCard) {
 		Integer thisCardValue = Card.valuesMap.get(this.getCardValue());
@@ -93,15 +106,28 @@ public class Card {
 
 	}
 
+	/**
+	 * Getter for the suitsMap keys, returns all possible card suits
+	 * 
+	 * @return All the keys in the suitsMap
+	 */
 	public static Collection<String> getSuitsCodes() {
 		return suitsMap.keySet();
 	}
 
+	/**
+	 * Getter for the valuesMap keys, returns a set of all possible card values
+	 * 
+	 * @return All the keys in the valuesMap
+	 */
 	public static Collection<String> getValuesCodes() {
 		return valuesMap.keySet();
 	}
 
 	/**
+	 * Constructor for the Card class. Sets the suit and value of the card to the
+	 * strings passed as parameters
+	 * 
 	 * @param suit  One character string representation of the suit of the card to
 	 *              create
 	 * @param value One character string representation of the value of the card to
@@ -119,14 +145,19 @@ public class Card {
 	}
 
 	/**
-	 * @param otherCard
-	 * @return
+	 * Method to compare to cards to each other. Returns true if they both have the
+	 * same suit and value
+	 * 
+	 * @param otherCard A card to compare this card to
+	 * @return True if both cards have the same suit and value, false otherwise
 	 */
 	public Boolean equals(Card otherCard) {
 		return (this.cardSuit.equals(otherCard.getCardSuit()) && this.cardValue.equals(otherCard.getCardValue()));
 	}
 
 	/**
+	 * Getter for the suit of the current Card
+	 * 
 	 * @return the cardSuit
 	 */
 	public String getCardSuit() {
@@ -134,27 +165,35 @@ public class Card {
 	}
 
 	/**
-	 * @param cardSuit the cardSuit to set
+	 * Setter for the cardSuit property
+	 * 
+	 * @param cardSuit the cardSuit to set as this Card's cardSuit
 	 */
 	public void setCardSuit(String cardSuit) {
 		this.cardSuit = cardSuit;
 	}
 
 	/**
-	 * @return the cardValue
+	 * Getter for the cardValue property
+	 * 
+	 * @return the cardValue of the current Card
 	 */
 	public String getCardValue() {
 		return cardValue;
 	}
 
 	/**
-	 * @param cardValue the cardValue to set
+	 * Setter for the value of the current card
+	 * 
+	 * @param cardValue the cardValue to set and this Card's cardValue
 	 */
 	public void setCardValue(String cardValue) {
 		this.cardValue = cardValue;
 	}
 
 	/**
+	 * Getter for the isFaceUp property
+	 * 
 	 * @return the isFaceUp
 	 */
 	public Boolean getIsFaceUp() {
@@ -162,26 +201,36 @@ public class Card {
 	}
 
 	/**
-	 * @param isFaceUp the isFaceUp to set
+	 * Setter for the isFaceUp property
+	 * 
+	 * @param isFaceUp the new value to set isFaceUp to
 	 */
 	public void setIsFaceUp(Boolean isFaceUp) {
 		this.isFaceUp = isFaceUp;
 	}
 
 	/**
-	 * @return the isRed
+	 * Getter for the isRed property
+	 * 
+	 * @return the current value of isRed
 	 */
 	public Boolean getIsRed() {
 		return isRed;
 	}
 
 	/**
+	 * Setter for the isRed property
+	 * 
 	 * @param isRed the isRed to set
 	 */
 	public void setIsRed(Boolean isRed) {
 		this.isRed = isRed;
 	}
 
+	/**
+	 * Allow the card to be converted to a string
+	 */
+	@Override
 	public String toString() {
 		return this.getCardValue() + this.getCardSuit();
 	}
