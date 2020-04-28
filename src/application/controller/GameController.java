@@ -11,7 +11,6 @@ import application.model.Card;
 import application.model.Game;
 import application.model.SolitaireSettings;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -31,7 +30,7 @@ public class GameController extends SuperController implements Initializable {
 	private List<Integer> drawIndices;
 	private List<Integer> foundationIndices;
 	private SolitaireSettings appSettingsObject;
-	private Game newGame;
+	private Game currentGame;
 	private Deque<Card> srcStack;
 	private Card cardToMove;
 	private Integer cardYOffset;
@@ -47,8 +46,6 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void dropCard(MouseEvent event) {
-		System.out.println(srcStack);
-		System.out.println(cardToMove);
 		Deque<Card> destStack = null;
 
 		if (event.getY() < this.yLayout.get(1)) {
@@ -63,9 +60,8 @@ public class GameController extends SuperController implements Initializable {
 				foundationNum = ((Double) Math.floor(tempX)).intValue();
 
 				// Set the destination stack based on where the user clicked, then move
-				destStack = newGame.getAFoundation(foundationNum);
-				System.out.println(cardToMove);
-				newGame.moveCardToFoundation(cardToMove, srcStack, destStack);
+				destStack = currentGame.getAFoundation(foundationNum);
+				currentGame.moveCardToFoundation(cardToMove, srcStack, destStack);
 			}
 		} else { // Handle putting cards in the stack here
 			// Store the X to manipulate
@@ -74,13 +70,13 @@ public class GameController extends SuperController implements Initializable {
 			// Calculate which stack to grab cards from
 			tempX = tempX / (cardWidth + 15);
 			Integer stackNum = ((Double) Math.floor(tempX)).intValue();
-			destStack = newGame.getAPlayArea(stackNum);
+			destStack = currentGame.getAPlayArea(stackNum);
 
 			if (destStack == srcStack) {
 				drawCards();
 				return;
 			} else {
-				newGame.moveCardToStack(cardToMove, srcStack, destStack);
+				currentGame.moveCardToStack(cardToMove, srcStack, destStack);
 			}
 
 		}
@@ -90,12 +86,11 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void pickUpCard(MouseEvent event) {
-		System.out.println("In getSrc");
 		this.srcStack = null;
 		if (event.getY() < this.yLayout.get(1)) {
 			// If it's within the draw box, do this
 			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
-				srcStack = this.newGame.getDrawDiscard();
+				srcStack = this.currentGame.getDrawDiscard();
 				cardToMove = srcStack.peek();
 			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) { // If it's in one of the
 																					// foundations, do this
@@ -109,7 +104,7 @@ public class GameController extends SuperController implements Initializable {
 				foundationNum = ((Double) Math.floor(tempX)).intValue();
 
 				// Set the source stack based on the foundation number calculated
-				srcStack = newGame.getAFoundation(foundationNum);
+				srcStack = currentGame.getAFoundation(foundationNum);
 				cardToMove = srcStack.peek();
 
 			}
@@ -120,7 +115,7 @@ public class GameController extends SuperController implements Initializable {
 			// Calculate which stack to grab cards from
 			tempX = tempX / (cardWidth + 15);
 			Integer stackNum = ((Double) Math.floor(tempX)).intValue();
-			srcStack = newGame.getAPlayArea(stackNum);
+			srcStack = currentGame.getAPlayArea(stackNum);
 
 			// Figure out where in the stack the user clicked
 			Double bottomOfStack = ((srcStack.size() - 1) * cardYOffset) + cardWidth;
@@ -135,12 +130,10 @@ public class GameController extends SuperController implements Initializable {
 				Integer index = ((Double) Math.floor(((startOfLastCard - tempY) / cardYOffset))).intValue() + 1;
 				Card currentCard = srcStack.peek();
 				for (Iterator<Card> stkIt = srcStack.iterator(); stkIt.hasNext() && i <= index;) {
-					System.out.println(currentCard);
 
 					currentCard = stkIt.next();
 					i++;
 				}
-				System.out.println(currentCard);
 				cardToMove = currentCard;
 			}
 
@@ -155,19 +148,19 @@ public class GameController extends SuperController implements Initializable {
 	@FXML
 	void Draw(ActionEvent event) {
 
-		newGame.drawNextCard();
+		currentGame.drawNextCard();
 		drawCards();
 
 	}
 
 	public void setGame(Game game) {
-		newGame = game;
+		currentGame = game;
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//gamePane.setPrefWidth(900);
-		//gamePane.setPrefHeight(650);
+		// gamePane.setPrefWidth(900);
+		// gamePane.setPrefHeight(650);
 
 		gameCanvas.widthProperty().bind(gamePane.widthProperty());
 		gameCanvas.heightProperty().bind(gamePane.heightProperty());
@@ -198,13 +191,9 @@ public class GameController extends SuperController implements Initializable {
 		foundationIndices.add(5);
 		foundationIndices.add(6);
 
-		newGame = new Game();
-		newGame.startNewGame();
 	}
 
 	public void updateValues() {
-		System.out.println(
-				((Double) gameCanvas.getWidth()).toString() + "x" + ((Double) gameCanvas.getHeight()).toString());
 
 		cardHeight = gameCanvas.getHeight() / 4;
 		cardWidth = cardHeight / 1.4529;
@@ -229,9 +218,9 @@ public class GameController extends SuperController implements Initializable {
 		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
 		// Draw the whole table for the game
-		drawTop(this.newGame);
-		drawStacks(this.newGame);
-		if (this.newGame.checkGameComplete()) {
+		drawTop(this.currentGame);
+		drawStacks(this.currentGame);
+		if (this.currentGame.checkGameComplete()) {
 			Alert gameOverAlert = new Alert(Alert.AlertType.INFORMATION, "You have won the game!");
 			gameOverAlert.show();
 		}
@@ -320,21 +309,22 @@ public class GameController extends SuperController implements Initializable {
 	 */
 	public void setAppSettingsObject(SolitaireSettings appSettingsObject) {
 		this.appSettingsObject = appSettingsObject;
-		this.newGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
 	}
 
 	/**
-	 * @return the newGame
+	 * @return the currentGame
 	 */
-	public Game getNewGame() {
-		return newGame;
+	public Game getCurrentGame() {
+		return currentGame;
 	}
 
 	/**
-	 * @param newGame the newGame to set
+	 * @param currentGame the currentGame to set
 	 */
-	public void setNewGame(Game newGame) {
-		this.newGame = newGame;
+	public void setCurrentGame(Game newGame) {
+		this.currentGame = newGame;
+		this.currentGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
+		currentGame.startNewGame();
 	}
 
 }

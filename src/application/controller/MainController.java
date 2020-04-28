@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.util.Stack;
 
+import application.model.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
@@ -48,11 +49,12 @@ public class MainController extends SuperController {
 	// Event Listener on MenuItem[#newGameMenuItem].onAction
 	@FXML
 	public void startNewGame(ActionEvent event) throws IOException {
-		System.out.println("Starting a new game");
 
-		GameController currentGame = (GameController) appControllerMap.get("gameController");
-		currentGame.updateValues();
-		currentGame.drawCards();
+		GameController currentGameControl = (GameController) appControllerMap.get("gameController");
+		
+		currentGameControl.setCurrentGame(new Game());
+		currentGameControl.updateValues();
+		currentGameControl.drawCards();
 		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
 	}
 
