@@ -15,9 +15,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TitleController">
    <top>
-      <Label alignment="CENTER" text="Solitaire" textFill="RED" BorderPane.alignment="CENTER">
+      <Label alignment="BOTTOM_CENTER" text="ANGER Solitaire" textFill="RED" BorderPane.alignment="CENTER">
          <font>
-            <Font name="Baskerville Old Face" size="50.0" />
+            <Font name="Baskerville Old Face" size="64.0" />
          </font>
          <effect>
             <DropShadow height="10.0" offsetX="-1.0" offsetY="-1.0" radius="4.5" width="10.0" />
@@ -39,28 +39,28 @@
          <children>
             <Button fx:id="NewGamePush" mnemonicParsing="false" onAction="#callStartNewGame" prefHeight="60.0" prefWidth="150.0" text="New Game" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Cooper Black" size="18.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <DropShadow offsetX="-2.0" offsetY="-1.0" />
                </effect></Button>
             <Button fx:id="LeaderboardPush" mnemonicParsing="false" onAction="#loadLeaderBoard" prefHeight="60.0" prefWidth="150.0" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Cooper Black" size="18.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <DropShadow offsetX="-2.0" offsetY="-1.0" />
                </effect></Button>
             <Button fx:id="HTPPush" mnemonicParsing="false" onAction="#callHowToPlay" prefHeight="60.0" prefWidth="150.0" text="How to play" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Cooper Black" size="18.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <DropShadow offsetX="-2.0" offsetY="-1.0" />
                </effect></Button>
             <Button fx:id="SettingsPush" mnemonicParsing="false" onAction="#callOpenPreferences" prefHeight="60.0" prefWidth="150.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Cooper Black" size="18.0" />
+                  <Font name="Cooper Black" size="19.0" />
                </font>
                <effect>
                   <DropShadow offsetX="-2.0" offsetY="-1.0" />
