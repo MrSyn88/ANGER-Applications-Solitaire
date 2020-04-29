@@ -6,47 +6,62 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="494.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
+<GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
    <children>
-      <Label layoutX="56.0" layoutY="48.0" prefHeight="22.0" prefWidth="324.0" text="The four types of piles in Solitaire are:" wrapText="true">
-         <font>
-            <Font name="Baskerville Old Face" size="14.0" />
-         </font></Label>
-      <Button fx:id="HTPButton" layoutX="595.0" layoutY="458.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
-      <Label layoutX="42.0" layoutY="26.0" text="Set Up">
+      <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="61.0" prefWidth="124.0" text="Go Back" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label prefHeight="22.0" prefWidth="324.0" text="The four types of piles in Solitaire are:" wrapText="true" GridPane.rowIndex="1">
          <font>
             <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="70.0" prefHeight="37.0" prefWidth="555.0" text="The Tableau: Consists of 7 piles. The first pile has 1 card wich increments with each pile until there are 7 cards in the 7th pile. The top card in each pile is face up" wrapText="true">
+      <Label text="Set Up">
          <font>
-            <Font name="Baskerville Old Face" size="14.0" />
+            <Font name="Baskerville Old Face" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="110.0" prefHeight="22.0" prefWidth="450.0" text="The Stock: The pile of leftover from which the player draws either 1 or 3 cards" wrapText="true">
-         <font>
-            <Font name="Baskerville Old Face" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="56.0" layoutY="132.0" prefHeight="22.0" prefWidth="450.0" text="The Talon: the pile right next the stock where drawn cards are placed" wrapText="true">
-         <font>
-            <Font name="Baskerville Old Face" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="56.0" layoutY="154.0" prefHeight="37.0" prefWidth="555.0" text="The Foundations: The 4 stacks to the right of the stock and the talon where the player stacks cards from the same suit in ascending order (from ace to king)" wrapText="true">
-         <font>
-            <Font name="Baskerville Old Face" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="42.0" layoutY="207.0" text="Gameplay">
+      <Label prefHeight="166.0" prefWidth="672.0" text="The Tableau: Consists of 7 piles. The first pile has 1 card wich increments with each pile until there are 7 cards in the 7th pile. The top card in each pile is face up" wrapText="true" GridPane.rowIndex="2">
          <font>
             <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="229.0" prefHeight="169.0" prefWidth="555.0" text="The goal of the game is to get every card placed in the foundations. Within the tableau, cards that are face up can be transferred in descending order (from king to ace) and they must alternate colors. The player may transfer the top card or stack of face up cards to any of the piles within the tableau as long as it follows the pattern of descending order in alternating colors. Any empty spots in the tableau can only be filled by a king. If the player needs a different card to continue, they may draw either 1 or 3 cards from the stock depending on the play style. When the stock runs out in 3 card draw, the talon is shuffled and placed back in the stock. As cards are tansferred within the tableau, the player can also place cards into the foundations to finsih the game" wrapText="true">
+      <Label prefHeight="96.0" prefWidth="640.0" text="The Foundations: The 4 stacks to the right of the stock and the talon where the player stacks cards from the same suit in ascending order (from ace to king)" wrapText="true" GridPane.rowIndex="3">
          <font>
-            <Font name="Baskerville Old Face" size="14.0" />
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="190.0" prefWidth="659.0" text="The Stock: The pile of leftover from which the player draws either 1 or 3 cards" wrapText="true" GridPane.rowIndex="4">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="63.0" prefWidth="644.0" text="The Talon: the pile right next the stock where drawn cards are placed" wrapText="true" GridPane.rowIndex="5">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Label>
+      <Label text="Gameplay" GridPane.rowIndex="6">
+         <font>
+            <Font name="Baskerville Old Face" size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="215.0" prefWidth="669.0" text="The goal of the game is to get every card placed in the foundations. Within the tableau, cards that are face up can be transferred in descending order (from king to ace) and they must alternate colors. The player may transfer the top card or stack of face up cards to any of the piles within the tableau as long as it follows the pattern of descending order in alternating colors. Any empty spots in the tableau can only be filled by a king. If the player needs a different card to continue, they may draw either 1 or 3 cards from the stock depending on the play style. When the stock runs out in 3 card draw, the talon is shuffled and placed back in the stock. As cards are tansferred within the tableau, the player can also place cards into the foundations to finsih the game." wrapText="true" GridPane.rowIndex="7">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Label>
    </children>
-</AnchorPane>
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="731.0" minWidth="10.0" prefWidth="731.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.0" minWidth="10.0" prefWidth="219.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="171.0" minHeight="4.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="269.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="298.0" minHeight="5.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="352.0" minHeight="8.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="339.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="231.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+</GridPane>
