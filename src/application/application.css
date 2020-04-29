@@ -1,1 +1,5 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.titlePane{
+	-fx-background-image: url("/application/view/MainWallpaper.png");
+	-fx-background-size: 100% 100%;
+}
