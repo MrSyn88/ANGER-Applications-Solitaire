@@ -17,7 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 /**
- * Controller for the Settings.fxml view which supports manipulating our settings.
+ * Controller for the Settings.fxml view which supports manipulating our
+ * settings.
  */
 public class SettingsController extends SuperController {
 
@@ -113,7 +114,7 @@ public class SettingsController extends SuperController {
 		}
 		// Restore the old center pane to the main pane
 		((GameController) this.appControllerMap.get("gameController")).drawCards();
-		((Node)(event.getSource())).getScene().getWindow().hide();
+		((Node) (event.getSource())).getScene().getWindow().hide();
 	}
 
 	@FXML
@@ -128,6 +129,7 @@ public class SettingsController extends SuperController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		((GameController) this.appControllerMap.get("gameController")).drawCards();
 	}
 
 	@FXML
@@ -148,7 +150,7 @@ public class SettingsController extends SuperController {
 
 		// Restore the old center pane to the main pane
 		((GameController) this.appControllerMap.get("gameController")).drawCards();
-		((Node)(event.getSource())).getScene().getWindow().hide();
+		((Node) (event.getSource())).getScene().getWindow().hide();
 	}
 
 	// Event Listener on ComboBox[#cardBackSelector].onAction
