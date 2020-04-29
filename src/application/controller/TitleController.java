@@ -33,29 +33,29 @@ public class TitleController extends SuperController {
 	private Button SettingsPush;
 
 	@FXML
-	void callHowToPlay(ActionEvent event) {
+	private void callHowToPlay(ActionEvent event) {
 		((MainController) this.getAppControllerMap().get("mainController")).howToPlayEventHandler(event);
 	}
 
 	@FXML
-	void callOpenPreferences(ActionEvent event) {
+	private void callOpenPreferences(ActionEvent event) {
 		((MainController) this.getAppControllerMap().get("mainController")).openPreferencesEventHandler(event);
 	}
 
 	@FXML
-	void callStartNewGame(ActionEvent event) throws IOException {
+	private void callStartNewGame(ActionEvent event) throws IOException {
 		// Load the mainController from the hashmap, then call the startNewGame method,
 		// passing the event
 		((MainController) this.getAppControllerMap().get("mainController")).startNewGame(event);
 	}
 
 	@FXML
-	void loadAbout(ActionEvent event) throws IOException {
+	private void loadAbout(ActionEvent event) throws IOException {
 		((MainController) this.getAppControllerMap().get("mainController")).aboutEventHandler(event);
 	}
 
 	@FXML
-	void initialize() {
+	private void initialize() {
 
 	}
 

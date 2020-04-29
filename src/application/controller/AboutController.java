@@ -20,7 +20,7 @@ public class AboutController extends SuperController{
     private GridPane AboutPane;
     //Returns to previous pane
     @FXML
-    void goBack(ActionEvent event) {
+    private void goBack(ActionEvent event) {
     	((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
     }
 
