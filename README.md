@@ -4,8 +4,6 @@ Solitaire game using javafx
 
 ## Instructions  
 
-***
-
 + **Press new game to start a game of solitaire**  
 
 + **For instructions on how to play the game of solitaire, click on how to play**  
@@ -29,9 +27,7 @@ Solitaire game using javafx
   + **Hint**
   + **Leaderboard**
 
-### Collaborators  
-
-***
+## Collaborators  
 
 &nbsp;&nbsp;&nbsp;&nbsp;**A**ndrew DiCarlo  
 &nbsp;&nbsp;&nbsp;&nbsp;**N**icolas Ruiz  
