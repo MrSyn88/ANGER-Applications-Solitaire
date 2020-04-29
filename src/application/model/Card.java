@@ -55,7 +55,7 @@ public class Card {
 	 * @return A file object for the given suit and value
 	 */
 	public static File getFaceLocation(String suit, String value) {
-		return new File("src/application/view/" + suitsMap.get(suit) + "/" + value + suit + fileExtension);
+		return new File("resources/" + suitsMap.get(suit) + "/" + value + suit + fileExtension);
 	}
 
 	/**

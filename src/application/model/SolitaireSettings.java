@@ -36,7 +36,7 @@ public class SolitaireSettings {
 	private IntegerProperty selectedBackIndex = new SimpleIntegerProperty();
 	private IntegerProperty drawType = new SimpleIntegerProperty();
 	private File selectedCardBack;
-	private File cardBackLocation = new File("src/application/view/Backs");
+	private File cardBackLocation = new File("resources/Backs");
 	private Map<String, File> cardBacks;
 	private File settingsFile;
 
