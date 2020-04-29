@@ -8,7 +8,10 @@
 
 <GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
    <children>
-      <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="61.0" prefWidth="124.0" text="Go Back" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="75.0" prefWidth="194.0" text="Go Back" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <font>
+            <Font name="Baskerville Old Face" size="36.0" />
+         </font></Button>
       <Label prefHeight="22.0" prefWidth="324.0" text="The four types of piles in Solitaire are:" wrapText="true" GridPane.rowIndex="1">
          <font>
             <Font name="Baskerville Old Face" size="18.0" />
