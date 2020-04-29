@@ -10,7 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-// controls about screen and allows user to return to home screen
+/** 
+ * 
+ * Controls about screen and allows user to return to the previous pane.
+ *
+ */
 public class AboutController extends SuperController{
 
     @FXML

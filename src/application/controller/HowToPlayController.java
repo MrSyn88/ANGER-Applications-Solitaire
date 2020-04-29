@@ -3,7 +3,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-// controls how to play screen and allows user to return to home screen
+/**
+ * Controls how to play screen and allows user to return to previous pane.
+ * */
+
 public class HowToPlayController extends SuperController{
 
     @FXML

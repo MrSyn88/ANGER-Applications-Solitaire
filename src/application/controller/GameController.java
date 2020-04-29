@@ -20,7 +20,12 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
+/**
+ * 
+ * The gameController is where all the code for the actual game is implemented.
+ * This varies from picking up cards and dropping them to redrawing the deck.
+ *
+ */
 public class GameController extends SuperController implements Initializable {
 
 	private List<Double> xLayout;

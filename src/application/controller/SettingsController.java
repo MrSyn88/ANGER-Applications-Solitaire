@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 /**
- * Controller for the Settings.fxml view
+ * Controller for the Settings.fxml view which supports manipulating our settings.
  */
 public class SettingsController extends SuperController {
 
