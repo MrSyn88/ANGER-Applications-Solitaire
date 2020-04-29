@@ -1,10 +1,10 @@
 # ANGER Applications Solitaire
 
-Solitaire game built using JavaFX.
+Solitaire game built using JavaFX in Eclipse.
 
 ## Running the application
 
-Anger Applications Solitaire is build using JavaFX and Eclipse. The easiest way to run the game is to import it as a project in Eclipse. To do this, follow these steps:
+Anger Applications Solitaire is built using JavaFX and Eclipse. The easiest way to run the game is to import it as a project in Eclipse. To do this, follow these steps:
 
 + Clone the repository to your disk
 + Open Eclipse, and click on File > Import from the menu bar
