@@ -46,7 +46,9 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * @param event
-	 */
+	 */ 
+	
+	// checks to see if the player's card move is valid and drops the selected card onto the stack
 	@FXML
 	void dropCard(MouseEvent event) {
 		Deque<Card> destStack = null;
@@ -90,6 +92,8 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * @param event
 	 */
+	
+	// allows player to click on a card to move
 	@FXML
 	void pickUpCard(MouseEvent event) {
 		this.srcStack = null;
@@ -149,7 +153,8 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * @param event
-	 */
+	 */ 
+	// allows player to move a selected card to a location
 	@FXML
 	void dragCard(MouseEvent event) {
 	}
@@ -157,6 +162,7 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * @param event
 	 */
+	// draws cards from pile in top left of screen
 	@FXML
 	void Draw(ActionEvent event) {
 
@@ -167,7 +173,8 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * @param game
-	 */
+	 */ 
+	// sets the game to whatever is chosen by the player
 	public void setGame(Game game) {
 		currentGame = game;
 	}
@@ -175,7 +182,8 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 *
 	 */
-	@Override
+	// sets up the start of a new game
+	@Override 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// gamePane.setPrefWidth(900);
 		// gamePane.setPrefHeight(650);
@@ -213,7 +221,8 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * 
-	 */
+	 */ 
+	// displays card in an offset pattern which displays previous and current cards
 	public void updateValues() {
 
 		cardWidth = gameCanvas.getWidth() / 8;
@@ -232,7 +241,8 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * 
-	 */
+	 */ 
+	// checks to see if the card stack is empty and if it is then the current game is over
 	public void drawCards() {
 		// Clear the entire canvas, so we don't get any duplicate cards
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
@@ -251,6 +261,8 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * @param runningGame
 	 */
+	
+	// make current card available to be selected from stack
 	public void drawTop(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 
@@ -277,7 +289,8 @@ public class GameController extends SuperController implements Initializable {
 
 	/**
 	 * @param runningGame
-	 */
+	 */ 
+	// draws completed ordered decks of cards 
 	public void drawStacks(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 		Double currentX;
