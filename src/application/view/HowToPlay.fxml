@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,53 +14,53 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
+<GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
    <children>
-      <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="75.0" prefWidth="194.0" text="Go Back" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+      <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="181.0" text="Go Back" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
          <font>
-            <Font size="26.0" />
+            <Font name="Angsana New" size="48.0" />
          </font>
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>
       <Label prefHeight="22.0" prefWidth="324.0" text="The four types of piles in Solitaire are:" wrapText="true" GridPane.rowIndex="1">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </Label>
       <Label text="Set Up">
          <font>
-            <Font name="Baskerville Old Face" size="22.0" />
+            <Font name="Angsana New" size="36.0" />
          </font>
       </Label>
-      <Label prefHeight="46.0" prefWidth="671.0" text="The Tableau: Consists of 7 piles. The first pile has 1 card wich increments with each pile until there are 7 cards in the 7th pile. The top card in each pile is face up" wrapText="true" GridPane.rowIndex="2">
+      <Label prefHeight="99.0" prefWidth="671.0" text="The Tableau: Consists of 7 piles. The first pile has 1 card wich increments with each pile until there are 7 cards in the 7th pile. The top card in each pile is face up" wrapText="true" GridPane.rowIndex="2">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </Label>
-      <Label prefHeight="50.0" prefWidth="675.0" text="The Foundations: The 4 stacks to the right of the stock and the talon where the player stacks cards from the same suit in ascending order (from ace to king)" wrapText="true" GridPane.rowIndex="3">
+      <Label prefHeight="100.0" prefWidth="675.0" text="The Foundations: The 4 stacks to the right of the stock and the talon where the player stacks cards from the same suit in ascending order (from ace to king)" wrapText="true" GridPane.rowIndex="3">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </Label>
       <Label prefHeight="40.0" prefWidth="964.0" text="The Stock: The pile of leftover from which the player draws either 1 or 3 cards" wrapText="true" GridPane.rowIndex="4">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </Label>
       <Label prefHeight="63.0" prefWidth="644.0" text="The Talon: the pile right next the stock where drawn cards are placed" wrapText="true" GridPane.rowIndex="5">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </Label>
       <Label text="Gameplay" GridPane.rowIndex="6">
          <font>
-            <Font name="Baskerville Old Face" size="22.0" />
+            <Font name="Angsana New" size="36.0" />
          </font>
       </Label>
       <TextArea editable="false" maxHeight="215.0" maxWidth="660.0" prefHeight="215.0" prefWidth="660.0" text="The goal of the game is to get every card placed in the foundations. Within the tableau, cards that are face up can be transferred in descending order (from king to ace) and they must alternate colors. The player may transfer the top card or stack of face up cards to any of the piles within the tableau as long as it follows the pattern of descending order in alternating colors. Any empty spots in the tableau can only be filled by a king. If the player needs a different card to continue, they may draw either 1 or 3 cards from the stock depending on the play style. When the stock runs out in 3 card draw, the talon is shuffled and placed back in the stock. As cards are tansferred within the tableau, the player can also place cards into the foundations to finsih the game." wrapText="true" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.vgrow="NEVER">
          <font>
-            <Font size="18.0" />
+            <Font name="Angsana New" size="26.0" />
          </font>
       </TextArea>
    </children>
@@ -63,14 +68,14 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="731.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="171.0" minHeight="4.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="269.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="298.0" minHeight="5.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="352.0" minHeight="8.0" prefHeight="32.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="339.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="231.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="171.0" minHeight="4.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="269.0" minHeight="0.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="298.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="352.0" minHeight="8.0" prefHeight="36.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="339.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="244.0" minHeight="10.0" prefHeight="236.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <padding>
       <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
