@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="AboutPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
+<GridPane fx:id="AboutPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="50.0" prefHeight="200.0" prefWidth="1034.0" text="ANGER Applcations" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <font>
@@ -20,10 +22,13 @@
             <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="AboutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="73.0" prefWidth="184.0" text="Go Back" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Button fx:id="AboutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="73.0" prefWidth="184.0" text="Go Back" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <font>
-            <Font name="Baskerville Old Face" size="34.0" />
-         </font></Button>
+            <Font size="27.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="14.0" />
+         </GridPane.margin></Button>
       <ImageView fitHeight="125.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <image>
             <Image url="@ANGER-Applications-logo.png" />
