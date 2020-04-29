@@ -85,7 +85,7 @@ public class Main extends Application {
 			HTPLoader.setLocation(getClass().getResource("view/HowToPlay.fxml"));
 
 			// Attempted to Load and store as above
-			paneMap.put("HTPScreen", (AnchorPane) HTPLoader.load());
+			paneMap.put("HTPScreen", (GridPane) HTPLoader.load());
 			controllerMap.put("HTPController", HTPLoader.getController());
 
 			// Load the about fxml

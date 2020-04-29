@@ -166,7 +166,7 @@ public class MainController extends SuperController {
 	@FXML
 	public void howToPlayEventHandler(ActionEvent event) {
 		this.oldCenterPane.push((Pane) this.mainPane.getCenter());
-		mainPane.setCenter((AnchorPane) appPaneMap.get("HTPScreen"));
+		mainPane.setCenter((GridPane) appPaneMap.get("HTPScreen"));
 	}
 
 	// Event Listener on MenuItem[#aboutMenuItem].onAction
