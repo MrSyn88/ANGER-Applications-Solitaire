@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
@@ -112,7 +113,7 @@ public class SettingsController extends SuperController {
 		}
 		// Restore the old center pane to the main pane
 		((GameController) this.appControllerMap.get("gameController")).drawCards();
-		((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
+		((Node)(event.getSource())).getScene().getWindow().hide();
 	}
 
 	@FXML
@@ -147,7 +148,7 @@ public class SettingsController extends SuperController {
 
 		// Restore the old center pane to the main pane
 		((GameController) this.appControllerMap.get("gameController")).drawCards();
-		((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
+		((Node)(event.getSource())).getScene().getWindow().hide();
 	}
 
 	// Event Listener on ComboBox[#cardBackSelector].onAction

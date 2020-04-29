@@ -1,16 +1,22 @@
 package application.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 import java.util.Stack;
 
+import application.Main;
 import application.model.Deck;
 import application.model.Game;
+import application.model.SolitaireSettings;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.event.Event;
 
@@ -50,6 +56,8 @@ public class MainController extends SuperController {
 	@FXML
 	private MenuItem aboutMenuItem;
 
+	private SolitaireSettings appSettingsObject;
+
 	// Event Listener on MenuItem[#newGameMenuItem].onAction
 	@FXML
 	public void startNewGame(ActionEvent event) throws IOException {
@@ -86,10 +94,30 @@ public class MainController extends SuperController {
 	@FXML
 	public void openPreferencesEventHandler(ActionEvent event) {
 
-		this.saveOldPane();
+		// this.saveOldPane();
 		// Get the main pane and set the center to be the settings screen
+		// Create a loader for the settings
+		FXMLLoader settingsLoader = new FXMLLoader();
+		settingsLoader.setLocation(Main.class.getResource("view/Settings.fxml"));
+
+		// Load and store as above
+		try {
+			appPaneMap.put("settingsScreen", (GridPane) settingsLoader.load());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		appControllerMap.put("settingsController", settingsLoader.getController());
+		appControllerMap.get("settingsController").setAppPaneMap(appPaneMap);
+		appControllerMap.get("settingsController").setAppControllerMap(appControllerMap);
+
+		((SettingsController) appControllerMap.get("settingsController")).setAppSettingsObject(appSettingsObject);
 		((SettingsController) appControllerMap.get("settingsController")).saveOldSettings();
-		mainPane.setCenter((GridPane) appPaneMap.get("settingsScreen"));
+		Scene settingsScene = new Scene((GridPane) appPaneMap.get("settingsScreen"));
+		Stage settingsStage = new Stage();
+		settingsStage.setScene(settingsScene);
+		settingsStage.setTitle("Settings");
+		settingsStage.show();
 	}
 
 	@FXML
@@ -192,6 +220,11 @@ public class MainController extends SuperController {
 	 */
 	public MainController() {
 		oldCenterPane = new Stack<Pane>();
+	}
+
+	public void setAppSettingsObject(SolitaireSettings settingsObject) {
+		this.appSettingsObject = settingsObject;
+
 	}
 
 }

@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.util.HashMap;
 
+import application.controller.MainController;
 import application.controller.GameController;
 import application.controller.SettingsController;
 import application.controller.SuperController;
@@ -57,6 +58,7 @@ public class Main extends Application {
 			paneMap.put("mainScreen", rootPane);
 			controllerMap.put("mainController", rootLoader.getController());
 			controllerMap.get("mainController").setAppPaneMap(paneMap);
+			((MainController) controllerMap.get("mainController")).setAppSettingsObject(settingsObject);
 			Scene rootScene = new Scene(rootPane);
 
 			// Create a loader for the title screen
@@ -66,14 +68,6 @@ public class Main extends Application {
 			// Load it and store both it and its controller
 			paneMap.put("titleScreen", (GridPane) titleLoader.load());
 			controllerMap.put("titleController", titleLoader.getController());
-
-			// Create a loader for the settings
-			FXMLLoader settingsLoader = new FXMLLoader();
-			settingsLoader.setLocation(getClass().getResource("view/Settings.fxml"));
-
-			// Load and store as above
-			paneMap.put("settingsScreen", (GridPane) settingsLoader.load());
-			controllerMap.put("settingsController", settingsLoader.getController());
 
 			FXMLLoader gameLoader = new FXMLLoader();
 			gameLoader.setLocation(getClass().getResource("view/Game.fxml"));
@@ -102,7 +96,6 @@ public class Main extends Application {
 			}
 
 			// Pass a reference to the settings for the entire application
-			((SettingsController) controllerMap.get("settingsController")).setAppSettingsObject(settingsObject);
 			((GameController) controllerMap.get("gameController")).setAppSettingsObject(settingsObject);
 
 			rootPane.setCenter((Node) paneMap.get("titleScreen"));
