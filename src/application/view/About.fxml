@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
+<GridPane fx:id="AboutPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="40.0" prefHeight="54.0" prefWidth="311.0" text="ANGER Applcations" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="50.0" prefHeight="200.0" prefWidth="1034.0" text="ANGER Applcations" textAlignment="CENTER" GridPane.columnIndex="1">
          <font>
             <Font name="Berlin Sans FB" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="79.0" layoutY="106.0" prefHeight="250.0" prefWidth="444.0" text="Put stuff about us here, should be relatively easy. I was thinking no home page button here, because the only way to reach here is through the help tab up top, a person can start a new game from there" wrapText="true" />
-      <Button fx:id="AboutButton" layoutX="424.0" layoutY="341.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="963.0" text="Creators: Andrew, Eloy, Garrett, Nick, and Robert. We created a solitaire game." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="AboutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="107.0" prefWidth="126.0" text="Go Back" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
-</AnchorPane>
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+</GridPane>

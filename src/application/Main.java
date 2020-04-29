@@ -93,7 +93,7 @@ public class Main extends Application {
 			AboutLoader.setLocation(getClass().getResource("view/About.fxml"));
 
 			// Put references for the about fxml into the appropriate maps
-			paneMap.put("AboutScreen", (AnchorPane) AboutLoader.load());
+			paneMap.put("AboutScreen", (GridPane) AboutLoader.load());
 			controllerMap.put("AboutController", AboutLoader.getController());
 
 			// Allow each controller to access every other controller

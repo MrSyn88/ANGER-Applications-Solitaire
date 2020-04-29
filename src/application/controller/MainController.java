@@ -173,7 +173,7 @@ public class MainController extends SuperController {
 	@FXML
 	public void aboutEventHandler(ActionEvent event) {
 		this.saveOldPane();
-		mainPane.setCenter((AnchorPane) appPaneMap.get("AboutScreen"));
+		mainPane.setCenter((GridPane) appPaneMap.get("AboutScreen"));
 	}
 
 	/**
