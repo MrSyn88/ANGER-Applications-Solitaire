@@ -20,7 +20,7 @@
                   <MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" onAction="#saveAsEventHandler" text="Save As..." />
                   <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#openGameEventHandler" text="Open" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#openPreferencesEventHandler" text="Preferences" />
+                  <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#openPreferencesEventHandler" text="Settings" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="goHomeItem" mnemonicParsing="false" onAction="#returnHomeEventHandler" text="Return Home" />
                   <MenuItem fx:id="exitMenuItem1" mnemonicParsing="false" onAction="#exitGameEventHandler" text="Exit" />
