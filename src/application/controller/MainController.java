@@ -47,8 +47,6 @@ public class MainController extends SuperController {
 	@FXML
 	private MenuItem restartMenuitem;
 	@FXML
-	private MenuItem hintMenuItem;
-	@FXML
 	private MenuItem howToPlayMenuItem;
 	@FXML
 	private MenuItem aboutMenuItem;
@@ -150,16 +148,6 @@ public class MainController extends SuperController {
 	// Event Listener on MenuItem[#restartMenuitem].onMenuValidation
 	@FXML
 	public void restartEventHandlerShortcut(Event event) {
-	}
-
-	// Event Listener on MenuItem[#hintMenuItem].onAction
-	@FXML
-	public void hintRequestEventHandler(ActionEvent event) {
-	}
-
-	// Event Listener on MenuItem[#hintMenuItem].onMenuValidation
-	@FXML
-	public void hintRequestEventHandlerShortcut(Event event) {
 	}
 
 	// Event Listener on MenuItem[#howToPlayMenuItem].onAction

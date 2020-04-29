@@ -36,7 +36,6 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="hintMenuItem" mnemonicParsing="false" onAction="#hintRequestEventHandler" onMenuValidation="#hintRequestEventHandlerShortcut" text="Hint" />
                   <MenuItem fx:id="howToPlayMenuItem" mnemonicParsing="false" onAction="#howToPlayEventHandler" text="How to Play" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#aboutEventHandler" text="About" />
