@@ -24,7 +24,7 @@
             <Font name="Cooper Black" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="LeaderboardPush" mnemonicParsing="false" onAction="#loadLeaderBoard" prefHeight="60.0" prefWidth="150.0" text="Leaderboard" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Button fx:id="AboutPush" mnemonicParsing="false" onAction="#loadAbout" prefHeight="60.0" prefWidth="150.0" text="About" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <effect>
             <DropShadow offsetX="-2.0" offsetY="-1.0" />
          </effect>
@@ -32,7 +32,7 @@
             <Font name="Cooper Black" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="HTPPush" mnemonicParsing="false" onAction="#callHowToPlay" prefHeight="60.0" prefWidth="150.0" text="How to play" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Button fx:id="HTPPush" mnemonicParsing="false" onAction="#callHowToPlay" prefHeight="60.0" prefWidth="150.0" text="How to play" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <effect>
             <DropShadow offsetX="-2.0" offsetY="-1.0" />
          </effect>
@@ -40,7 +40,7 @@
             <Font name="Cooper Black" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="SettingsPush" mnemonicParsing="false" onAction="#callOpenPreferences" prefHeight="60.0" prefWidth="150.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Button fx:id="SettingsPush" mnemonicParsing="false" onAction="#callOpenPreferences" prefHeight="60.0" prefWidth="150.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <effect>
             <DropShadow offsetX="-2.0" offsetY="-1.0" />
          </effect>
@@ -48,7 +48,7 @@
             <Font name="Cooper Black" size="19.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="929.0" text="ANGER Solitaire" textFill="#f50606" underline="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="929.0" text="ANGER Solitaire" textFill="#f50606" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font name="Baskerville Old Face" size="100.0" />
          </font>
@@ -60,6 +60,11 @@
             </DropShadow>
          </effect>
       </Label>
+      <ImageView fitHeight="125.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <image>
+            <Image url="@ANGER-Applications-logo.png" />
+         </image>
+      </ImageView>
    </children>
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -69,6 +74,8 @@
       <RowConstraints maxHeight="103.0" minHeight="0.0" prefHeight="58.0" vgrow="NEVER" />
       <RowConstraints maxHeight="140.0" minHeight="0.0" vgrow="NEVER" />
       <RowConstraints maxHeight="163.0" minHeight="10.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="114.0" minHeight="10.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="62.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="150.0" minHeight="134.0" prefHeight="150.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="0.0" minHeight="-Infinity" prefHeight="0.0" vgrow="NEVER" />
    </rowConstraints>
 </GridPane>

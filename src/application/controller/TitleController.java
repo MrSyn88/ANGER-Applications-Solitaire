@@ -24,7 +24,7 @@ public class TitleController extends SuperController {
 	private Button NewGamePush;
 
 	@FXML
-	private Button LeaderboardPush;
+	private Button AboutPush;
 
 	@FXML
 	private Button HTPPush;
@@ -50,8 +50,8 @@ public class TitleController extends SuperController {
 	}
 
 	@FXML
-	void loadLeaderBoard(ActionEvent event) {
-
+	void loadAbout(ActionEvent event) throws IOException {
+		((MainController) this.getAppControllerMap().get("mainController")).aboutEventHandler(event);
 	}
 
 	@FXML
