@@ -64,7 +64,7 @@ public class Main extends Application {
 			titleLoader.setLocation(getClass().getResource("view/Title.fxml"));
 
 			// Load it and store both it and its controller
-			paneMap.put("titleScreen", (BorderPane) titleLoader.load());
+			paneMap.put("titleScreen", (GridPane) titleLoader.load());
 			controllerMap.put("titleController", titleLoader.getController());
 
 			// Create a loader for the settings
