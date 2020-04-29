@@ -112,7 +112,7 @@ public class Main extends Application {
 			primaryStage.show();
 
 			String musicFile = "ChillVibes.mp3"; // Plays Roberts playlist
-
+			//Play music
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.volumeProperty().bind(this.settingsObject.musicVolumeProperty()

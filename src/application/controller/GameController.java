@@ -93,7 +93,7 @@ public class GameController extends SuperController implements Initializable {
 	 * @param event
 	 */
 	
-	// allows player to click on a card to move
+	// allows player to click on a card to move and stores it in stack to determine if valid move
 	@FXML
 	void pickUpCard(MouseEvent event) {
 		this.srcStack = null;
@@ -295,6 +295,7 @@ public class GameController extends SuperController implements Initializable {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 		Double currentX;
 		Double currentY;
+		//Put the foundation stack and populate accordingly
 		for (int i = 0; i < 4; i++) {
 			Deque<Card> FoundationStack = runningGame.getAFoundation(i);
 			currentX = xLayout.get(foundationIndices.get(i));
@@ -310,7 +311,7 @@ public class GameController extends SuperController implements Initializable {
 				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
 			}
 		}
-
+		//Populate the game deck
 		for (int i = 0; i < 7; i++) {
 			Deque<Card> currentStack = runningGame.getAPlayArea(i);
 

@@ -8,7 +8,7 @@ public class HowToPlayController extends SuperController{
 
     @FXML
     private Button HTPButton;
-
+    //Calls previous pane
     @FXML
     void goBack(ActionEvent event) {
     	((MainController) this.appControllerMap.get("mainController")).restoreCenterPane();
