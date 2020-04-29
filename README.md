@@ -24,8 +24,6 @@ Solitaire game using javafx
   + **Redo**  
   + **Save/Save as**  
   + **Open**  
-  + **Hint**
-  + **Leaderboard**
 
 ## Collaborators  
 
