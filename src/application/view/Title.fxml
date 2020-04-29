@@ -48,10 +48,17 @@
             <Font name="Cooper Black" size="19.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="929.0" text="ANGER Solitaire" textFill="RED">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="929.0" text="ANGER Solitaire" textFill="#f50606" underline="true">
          <font>
-            <Font name="Baskerville Old Face" size="64.0" />
+            <Font name="Baskerville Old Face" size="96.0" />
          </font>
+         <effect>
+            <DropShadow height="20.0" offsetX="-2.0" offsetY="-1.0" radius="9.5" spread="1.0" width="20.0">
+               <input>
+                  <Glow level="0.6" />
+               </input>
+            </DropShadow>
+         </effect>
       </Label>
    </children>
    <columnConstraints>
