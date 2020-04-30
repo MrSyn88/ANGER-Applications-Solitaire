@@ -3,6 +3,7 @@ package application.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
 
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.event.Event;
@@ -73,6 +75,9 @@ public class MainController extends SuperController {
 		currentGameControl.updateValues();
 		currentGameControl.drawCards();
 		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
+		AudioClip cardSound = new AudioClip((new File("resources/cardShuffle.mp3")).toURI().toString());
+		cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
+		cardSound.play();
 	}
 
 	// Event Listener on MenuItem[#saveMenuItem].onAction
@@ -169,6 +174,9 @@ public class MainController extends SuperController {
 		currentGameControl.setCurrentGame(new Game(new Deck(this.oldDeck)));
 		currentGameControl.updateValues();
 		currentGameControl.drawCards();
+		AudioClip cardSound = new AudioClip((new File("resources/cardShuffle.mp3")).toURI().toString());
+		cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
+		cardSound.play();
 		mainPane.setCenter((Pane) appPaneMap.get("gameScreen"));
 	}
 
@@ -209,6 +217,9 @@ public class MainController extends SuperController {
 		// Make sure we're not popping from an empty stack
 		if (!oldCenterPane.isEmpty()) {
 			this.mainPane.setCenter(oldCenterPane.pop());
+			AudioClip cardSound = new AudioClip((new File("resources/cardShuffle.mp3")).toURI().toString());
+			cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
+			cardSound.play();
 		} else {
 			System.out.println("Pane stack is empty, not able to return to the previous pane");
 		}

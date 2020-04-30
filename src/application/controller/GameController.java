@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 
 /**
  * 
@@ -61,6 +63,8 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void dropCard(MouseEvent event) {
+		AudioClip cardSound = new AudioClip((new File("resources/cardSound.mp3")).toURI().toString());
+		cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
 		// reset the destStack
 		Deque<Card> destStack = null;
 
@@ -85,6 +89,7 @@ public class GameController extends SuperController implements Initializable {
 					return;
 				} else {
 					currentGame.moveCardToFoundation(cardToMove, srcStack, destStack);
+					cardSound.play();
 				}
 
 			}
@@ -103,6 +108,7 @@ public class GameController extends SuperController implements Initializable {
 				return;
 			} else {
 				currentGame.moveCardToStack(cardToMove, srcStack, destStack);
+				cardSound.play();
 			}
 
 		}
@@ -120,6 +126,8 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void pickUpCard(MouseEvent event) {
+		AudioClip cardSound = new AudioClip((new File("resources/cardSound.mp3")).toURI().toString());
+		cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
 		// Reset the srcStack
 		this.srcStack = null;
 
@@ -130,6 +138,7 @@ public class GameController extends SuperController implements Initializable {
 			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
 				srcStack = this.currentGame.getDrawDiscard();
 				cardToMove = srcStack.peek();
+				cardSound.play();
 			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) { // If it's in one of the
 																					// foundations, do this
 				// Store the X to manipulate it
@@ -147,7 +156,7 @@ public class GameController extends SuperController implements Initializable {
 				// Set the source stack based on the foundation number calculated
 				srcStack = currentGame.getAFoundation(foundationNum);
 				cardToMove = srcStack.peek();
-
+				cardSound.play();
 			}
 		} else { // Handle getting cards from the game board in here
 					// Store the X to manipulate
@@ -169,6 +178,8 @@ public class GameController extends SuperController implements Initializable {
 			// If the user clicked on the last card on the stack, set it as the cardToMove
 			if (tempY > startOfLastCard && tempY < bottomOfStack) {
 				cardToMove = srcStack.peek();
+
+				cardSound.play();
 			} else if (tempY < startOfLastCard) { // If the user clicked somewhere above that, then figure where in the
 													// stack they clicked
 				int i = 0;
@@ -182,6 +193,7 @@ public class GameController extends SuperController implements Initializable {
 					i++;
 				}
 				cardToMove = currentCard;
+				cardSound.play();
 			}
 
 		}
@@ -204,8 +216,11 @@ public class GameController extends SuperController implements Initializable {
 	// draws cards from pile in top left of screen
 	@FXML
 	void Draw(ActionEvent event) {
-
+		AudioClip cardSound = new AudioClip((new File("resources/cardSound.mp3")).toURI().toString());
+		cardSound.setVolume(appSettingsObject.getEffectsVolume() * appSettingsObject.getMasterVolume() / 10000);
+		cardSound.play();
 		currentGame.drawNextCard();
+
 		drawCards();
 
 	}

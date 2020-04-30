@@ -114,7 +114,7 @@ public class SolitaireSettings {
 	 * 
 	 * effectsVolume: 50
 	 * 
-	 * undoable: true
+	 * undoable: false
 	 * 
 	 * solvable: false
 	 * 
@@ -131,7 +131,7 @@ public class SolitaireSettings {
 		setMasterVolume(50.0);
 		setMusicVolume(50.0);
 		setEffectsVolume(50.0);
-		setUndoable(true);
+		setUndoable(false);
 		setSolvable(false);
 		setShowTimes(false);
 		// Make sure cardBacks isn't empty before trying to set one as the

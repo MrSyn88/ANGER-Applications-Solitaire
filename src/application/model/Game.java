@@ -154,9 +154,11 @@ public class Game {
 	public void moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
 			return;
+		} else if (source == null || dest == null || cardToMove == null) {
+			return;
 		}
 		// Can't move a card if it's not face up
-		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidTableCard(dest.peek())) {
+		else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidTableCard(dest.peek())) {
 			return;
 		}
 
@@ -188,7 +190,11 @@ public class Game {
 	public void moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
 			return;
-		} else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
+		} else if (source == null || dest == null || cardToMove == null) {
+			return;
+		}
+		// Can't move a card if it's not face up
+		else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
 			// Can't move a card if it's not face up
 			return;
 		} else if (source.peek() != cardToMove) {
