@@ -34,9 +34,11 @@ Anger Applications Solitaire is built using JavaFX and Eclipse. The easiest way 
 + **Access title screen or exit the application by clicking on file and return home or exit**
 
 + **Functions still under construction are:**  
-  + **Redo**  
+  + **Undo/Redo**  
   + **Save/Save as**  
   + **Open**  
+  + **Time/Moves**
+  + **Solvable games toggle**
 
 ## Collaborators  
 
