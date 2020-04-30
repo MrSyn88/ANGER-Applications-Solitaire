@@ -1,9 +1,9 @@
-0.0
-100.0
-55.590062111801245
+54.6583850931677
+54.037267080745345
+54.658385093167695
 true
 false
 false
-resources\Backs\Blue2.png
-4
+resources\Backs\Red.png
+0
 0
