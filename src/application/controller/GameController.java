@@ -223,7 +223,7 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * @param event
 	 */
-	// draws cards from pile in the top left of the screen
+	// draws cards from the pile in the top left of the screen
 	@FXML
 	void Draw(ActionEvent event) {
 
@@ -310,7 +310,7 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * Clears the whole board, then calls functions to draw the current state of the
 	 * game on the canvas. It then checks to see if the card stack is empty and if
-	 * it is then the current game is over
+	 * it is then the current game is OVER
 	 */
 
 	public void drawCards() {
@@ -329,7 +329,8 @@ public class GameController extends SuperController implements Initializable {
 			}
 		}
 		if(i ==0) {
-			String musicFile = "cardShuffle.mp3"; // Plays Roberts playlist
+			String musicFile = "cardShuffle.mp3"; // Plays Roberts play list
+			
 			// Play music
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -338,7 +339,8 @@ public class GameController extends SuperController implements Initializable {
 			mediaPlayer.play();
 			i++;
 		} else if( i > 0) {
-		String musicFile = "cardSound.mp3"; // Plays Roberts playlist
+		String musicFile = "cardSound.mp3"; // Plays Robert's play list
+		
 		// Play music
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
