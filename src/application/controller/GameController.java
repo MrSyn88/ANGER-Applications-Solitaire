@@ -315,7 +315,7 @@ public class GameController extends SuperController implements Initializable {
 			// Play music
 			Media sound = new Media(new File(musicFile).toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.volumeProperty().bind(this.appSettingsObject.musicVolumeProperty()
+			mediaPlayer.volumeProperty().bind(this.appSettingsObject.effectsVolumeProperty()
 					.multiply(this.appSettingsObject.masterVolumeProperty()).divide(10000));
 			mediaPlayer.play();
 			i++;
@@ -324,7 +324,7 @@ public class GameController extends SuperController implements Initializable {
 		// Play music
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.volumeProperty().bind(this.appSettingsObject.musicVolumeProperty()
+		mediaPlayer.volumeProperty().bind(this.appSettingsObject.effectsVolumeProperty()
 				.multiply(this.appSettingsObject.masterVolumeProperty()).divide(10000));
 		mediaPlayer.play();
 		}
