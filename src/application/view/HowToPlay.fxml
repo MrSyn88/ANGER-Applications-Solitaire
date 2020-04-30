@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
+<GridPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HowToPlayController">
    <children>
       <Button fx:id="HTPButton" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="181.0" text="Go Back" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
          <font>
@@ -18,7 +23,7 @@
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>
-      <Label prefHeight="32.0" prefWidth="373.0" text="The four types of piles in Solitaire are:" wrapText="true" GridPane.rowIndex="1">
+      <Label prefHeight="32.0" prefWidth="960.0" text="The four types of piles in Solitaire are:" wrapText="true" GridPane.rowIndex="1">
          <font>
             <Font name="Angsana New" size="22.0" />
          </font>
@@ -43,7 +48,7 @@
             <Font name="Angsana New" size="22.0" />
          </font>
       </Label>
-      <Label prefHeight="38.0" prefWidth="681.0" text="The Talon: the pile right next the stock where drawn cards are placed" wrapText="true" GridPane.rowIndex="5">
+      <Label prefHeight="38.0" prefWidth="923.0" text="The Talon: the pile right next the stock where drawn cards are placed" wrapText="true" GridPane.rowIndex="5">
          <font>
             <Font name="Angsana New" size="22.0" />
          </font>

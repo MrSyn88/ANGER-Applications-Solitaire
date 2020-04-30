@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,14 +16,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="AboutPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
+<GridPane fx:id="AboutPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AboutController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="50.0" prefHeight="200.0" prefWidth="1034.0" text="ANGER Applcations" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <font>
             <Font name="Angsana New" size="64.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="249.0" prefWidth="558.0" text="Creators: Andrew DiCarlo, Nicolas Ruiz, Garrett Lyssy, Eloy Rodriguez, and Robert Quintanilla. We made this Solitaire application using JavaFx in Eclipse for a class on application programming. Thank you for playing our game. We hope you enjoy it." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="264.0" prefWidth="755.0" text="Creators: Andrew DiCarlo, Nicolas Ruiz, Garrett Lyssy, Eloy Rodriguez, and Robert Quintanilla. We made this Solitaire application using JavaFx in Eclipse for a class on application programming. Thank you for playing our game. We hope you enjoy it." textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
