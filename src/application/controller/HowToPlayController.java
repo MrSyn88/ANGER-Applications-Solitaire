@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 /**
- * Controls how to play screen and allows user to return to previous pane.
+ * Controls the (How to play) screen and allows the user to return to the previous pane.
  * */
 
 public class HowToPlayController extends SuperController{
 
     @FXML
     private Button HTPButton;
+    
     //Calls previous pane
     @FXML
     private void goBack(ActionEvent event) {

@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 
 /** 
  * 
- * Controls about screen and allows user to return to the previous pane.
+ * Controls the (About) screen and allows user to return to the previous pane.
  *
  */
 public class AboutController extends SuperController{
@@ -22,6 +22,7 @@ public class AboutController extends SuperController{
     
     @FXML
     private GridPane AboutPane;
+    
     //Returns to previous pane
     @FXML
     private void goBack(ActionEvent event) {
