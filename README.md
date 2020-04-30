@@ -17,7 +17,7 @@ Anger Applications Solitaire is built using JavaFX and Eclipse. The easiest way 
 
 ## Instructions  
 
-+ **Press new game to start a game of solitaire**  
++ **Press new game to start a new game of solitaire**  
 
 + **For instructions on how to play the game of solitaire, click on how to play**  
 
