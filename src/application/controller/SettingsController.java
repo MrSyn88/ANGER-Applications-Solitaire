@@ -89,6 +89,7 @@ public class SettingsController extends SuperController {
 		// select the previously chosen selection
 		cardBackSelector.getItems().addAll(appSettingsObject.getCardBacks().keySet());
 		cardBackSelector.getSelectionModel().select(appSettingsObject.getSelectedBackIndex());
+		System.out.println(appSettingsObject.getSelectedBackIndex());
 		appSettingsObject.getSelectedBackIndexProperty()
 				.bind(cardBackSelector.getSelectionModel().selectedIndexProperty());
 		appSettingsObject.setSelectedCardBack(cardBackSelector.getSelectionModel().getSelectedItem());
@@ -187,12 +188,10 @@ public class SettingsController extends SuperController {
 	 * saved if the user wants to revert back to the old values
 	 */
 	public void saveOldSettings() {
-		try {
-			this.appSettingsObject.saveSettings();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { this.appSettingsObject.saveSettings(); } catch (IOException e) { //
+		 * TODO Auto-generated catch block e.printStackTrace(); }
+		 */
 		this.oldMasterVolume = this.masterVolumeSlider.getValue();
 		this.oldMusicVolume = this.musicVolumeSlider.getValue();
 		this.oldEffectsVolume = this.effectsVolumeSlider.getValue();

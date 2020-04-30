@@ -36,7 +36,7 @@ public class SolitaireSettings {
 	private IntegerProperty selectedBackIndex = new SimpleIntegerProperty();
 	private IntegerProperty drawType = new SimpleIntegerProperty();
 	private File selectedCardBack;
-	private File cardBackLocation = new File("resources/Backs");
+	private File cardBackLocation = new File("resources/Backs/");
 	private Map<String, File> cardBacks;
 	private File settingsFile;
 
@@ -134,6 +134,9 @@ public class SolitaireSettings {
 		setUndoable(false);
 		setSolvable(false);
 		setShowTimes(false);
+
+		setSelectedBackIndex(0);
+		setDrawType(0);
 		// Make sure cardBacks isn't empty before trying to set one as the
 		// selectedCardBack
 		if (!cardBacks.isEmpty()) {
@@ -142,8 +145,6 @@ public class SolitaireSettings {
 				break;
 			}
 		}
-		setSelectedBackIndex(0);
-		setDrawType(0);
 
 	}
 
@@ -434,9 +435,9 @@ public class SolitaireSettings {
 		outFile.println(getUndoable());
 		outFile.println(getSolvable());
 		outFile.println(getShowTimes());
-		outFile.println(getSelectedCardBack());
 		outFile.println(getSelectedBackIndex());
 		outFile.println(getDrawType());
+		outFile.println(getSelectedCardBack());
 
 		outFile.close();
 	}
@@ -449,9 +450,9 @@ public class SolitaireSettings {
 	 * @throws IOException
 	 */
 	public void loadSettings(File settingsFile) throws IOException {
+		this.setDefaults();
 		// Set all settings to default. If they are not able to be read from a file,
 		// they will stay as defaults
-		this.setDefaults();
 		Scanner inScan = new Scanner(settingsFile);
 		if (inScan.hasNextDouble())
 			setMasterVolume(inScan.nextDouble());
@@ -459,18 +460,18 @@ public class SolitaireSettings {
 			setMusicVolume(inScan.nextDouble());
 		if (inScan.hasNextDouble())
 			setEffectsVolume(inScan.nextDouble());
-		if (inScan.hasNextDouble())
+		if (inScan.hasNextBoolean())
 			setUndoable(inScan.nextBoolean());
-		if (inScan.hasNextDouble())
+		if (inScan.hasNextBoolean())
 			setSolvable(inScan.nextBoolean());
-		if (inScan.hasNextDouble())
+		if (inScan.hasNextBoolean())
 			setShowTimes(inScan.nextBoolean());
-		if (inScan.hasNext())
-			setSelectedCardBack(inScan.next());
 		if (inScan.hasNextInt())
 			setSelectedBackIndex(inScan.nextInt());
 		if (inScan.hasNextInt())
 			setDrawType(inScan.nextInt());
+		if (inScan.hasNextLine())
+			setSelectedCardBack(inScan.nextLine());
 
 		inScan.close();
 	}
