@@ -16,9 +16,9 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="newGameMenuItem" mnemonicParsing="false" onAction="#startNewGame" text="New Game" />
-                  <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#saveEventHandler" text="Save" />
-                  <MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" onAction="#saveAsEventHandler" text="Save As..." />
-                  <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#openGameEventHandler" text="Open" />
+                  <MenuItem fx:id="saveMenuItem" disable="true" mnemonicParsing="false" onAction="#saveEventHandler" text="Save" />
+                  <MenuItem fx:id="saveAsMenuItem" disable="true" mnemonicParsing="false" onAction="#saveAsEventHandler" text="Save As..." />
+                  <MenuItem fx:id="openMenuItem" disable="true" mnemonicParsing="false" onAction="#openGameEventHandler" text="Open" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#openPreferencesEventHandler" text="Settings" />
                   <SeparatorMenuItem mnemonicParsing="false" />
@@ -28,8 +28,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem fx:id="undoMenuItem" mnemonicParsing="false" onAction="#undoEventHandler" onMenuValidation="#undoEventHandlerShortcut" text="Undo" />
-                  <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#redoEventHandler" onMenuValidation="#redoEventHandlerShortcut" text="Redo" />
+              <MenuItem fx:id="undoMenuItem" disable="true" mnemonicParsing="false" onAction="#undoEventHandler" onMenuValidation="#undoEventHandlerShortcut" text="Undo" />
+                  <MenuItem fx:id="redoMenuItem" disable="true" mnemonicParsing="false" onAction="#redoEventHandler" onMenuValidation="#redoEventHandlerShortcut" text="Redo" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="restartMenuitem" mnemonicParsing="false" onAction="#restartEventHandler" onMenuValidation="#restartEventHandlerShortcut" text="Restart" />
             </items>

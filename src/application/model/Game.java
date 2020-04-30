@@ -150,14 +150,15 @@ public class Game {
 	 *                     from
 	 * @param destColumn   A reference to the stack that the cardToMove is trying to
 	 *                     be moved to
+	 * @return 
 	 */
-	public void moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
+	public boolean moveCardToStack(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
-			return;
+			return false;
 		}
 		// Can't move a card if it's not face up
 		if (!cardToMove.getIsFaceUp() || !cardToMove.isValidTableCard(dest.peek())) {
-			return;
+			return false;
 		}
 
 		while (!source.peek().equals(cardToMove)) {
@@ -170,6 +171,7 @@ public class Game {
 		this.tempCardStack.clear();
 		if (!source.isEmpty())
 			source.peek().setIsFaceUp(true);
+		return true;
 	}
 
 	/**
@@ -184,20 +186,22 @@ public class Game {
 	 *                     from
 	 * @param destColumn   A reference to the stack that the cardToMove is trying to
 	 *                     be moved to
+	 * @return 
 	 */
-	public void moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
+	public boolean moveCardToFoundation(Card cardToMove, Deque<Card> source, Deque<Card> dest) {
 		if (source == dest) {
-			return;
+			return false;
 		} else if (!cardToMove.getIsFaceUp() || !cardToMove.isValidFoundationCard(dest.peek())) {
 			// Can't move a card if it's not face up
-			return;
+			return false;
 		} else if (source.peek() != cardToMove) {
-			return;
+			return false;
 		}
 
 		dest.push(source.pop());
 		if (!source.isEmpty())
 			source.peek().setIsFaceUp(true);
+		return true;
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -20,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * 
@@ -42,6 +45,7 @@ public class GameController extends SuperController implements Initializable {
 	private Integer cardYOffset;
 	private Integer xMargin;
 	private Integer yMargin;
+	private Integer i = 0;
 
 	@FXML
 	private Pane gamePane;
@@ -85,10 +89,12 @@ public class GameController extends SuperController implements Initializable {
 
 				// Don't bother trying to move if the source and destStacks are the same
 				if (destStack == srcStack) {
-					drawCards();
+					
 					return;
 				} else {
-					currentGame.moveCardToFoundation(cardToMove, srcStack, destStack);
+					boolean sound = currentGame.moveCardToFoundation(cardToMove, srcStack, destStack);
+					if(sound == true)
+						drawCards();
 				}
 
 			}
@@ -105,16 +111,18 @@ public class GameController extends SuperController implements Initializable {
 
 			// Don't bother trying to move cards from the same stack to themselves
 			if (destStack == srcStack) {
-				drawCards();
+				
 				return;
 			} else {
-				currentGame.moveCardToStack(cardToMove, srcStack, destStack);
+				boolean sound = currentGame.moveCardToStack(cardToMove, srcStack, destStack);
+				if(sound == true)
+					drawCards();
 			}
 
 		}
 
 		// Redraw the game area to show any new changes to game state
-		drawCards();
+		//drawCards();
 	}
 
 	/**
@@ -319,6 +327,24 @@ public class GameController extends SuperController implements Initializable {
 				Alert gameOverAlert = new Alert(Alert.AlertType.INFORMATION, "You have won the game!");
 				gameOverAlert.show();
 			}
+		}
+		if(i ==0) {
+			String musicFile = "cardShuffle.mp3"; // Plays Roberts playlist
+			// Play music
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.volumeProperty().bind(this.appSettingsObject.effectsVolumeProperty()
+					.multiply(this.appSettingsObject.masterVolumeProperty()).divide(10000));
+			mediaPlayer.play();
+			i++;
+		} else if( i > 0) {
+		String musicFile = "cardSound.mp3"; // Plays Roberts playlist
+		// Play music
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.volumeProperty().bind(this.appSettingsObject.effectsVolumeProperty()
+				.multiply(this.appSettingsObject.masterVolumeProperty()).divide(10000));
+		mediaPlayer.play();
 		}
 	}
 
