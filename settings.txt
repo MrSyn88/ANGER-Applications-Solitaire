@@ -4,6 +4,6 @@
 true
 false
 false
-resources\Backs\Red.png
-0
+resources\Backs\Blue2.png
+4
 0

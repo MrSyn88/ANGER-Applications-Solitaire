@@ -61,16 +61,20 @@ public class GameController extends SuperController implements Initializable {
 
 	@FXML
 	void dropCard(MouseEvent event) {
+		
 		// reset the destStack
 		Deque<Card> destStack = null;
 
 		// Handle the user releasing in the top row
 		if (event.getY() < this.yLayout.get(1)) {
+			
 			// The only place you can put things in the top row are the foundations
 			if (event.getX() > this.xLayout.get(foundationIndices.get(0))) {
+				
 				// Store the X to manipulate it
 				Double tempX = event.getX();
 				Integer foundationNum;
+				
 				// Transform the X value for this index to find the relevant foundation number
 				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
 				tempX = tempX / (cardWidth + 15);
@@ -79,7 +83,7 @@ public class GameController extends SuperController implements Initializable {
 				// Set the destination stack based on where the user clicked, then move
 				destStack = currentGame.getAFoundation(foundationNum);
 
-				// Don't bother trying to move if the source and dest stacks are the same
+				// Don't bother trying to move if the source and destStacks are the same
 				if (destStack == srcStack) {
 					drawCards();
 					return;
@@ -88,7 +92,9 @@ public class GameController extends SuperController implements Initializable {
 				}
 
 			}
-		} else { // Handle putting cards in the stack here
+		} else { 
+			
+			// Handle putting cards in the stack here
 			// Store the X to manipulate
 			Double tempX = event.getX();
 
@@ -112,19 +118,21 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/**
-	 * allows player to click on a card to move and stores it in stack to determine
-	 * if valid move
+	 * allows player to click on a card to move and stores it in the stack to determine
+	 * if it's a valid move
 	 * 
 	 * @param event
 	 */
 
 	@FXML
 	void pickUpCard(MouseEvent event) {
+		
 		// Reset the srcStack
 		this.srcStack = null;
 
 		// Check if the click was in the top part of the board
 		if (event.getY() < this.yLayout.get(1)) {
+			
 			// If it's within the drawDiscard box, set the srcStack to the discard stack and
 			// the card to move as the top of the discard stack
 			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
@@ -132,12 +140,13 @@ public class GameController extends SuperController implements Initializable {
 				cardToMove = srcStack.peek();
 			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) { // If it's in one of the
 																					// foundations, do this
+				
 				// Store the X to manipulate it
 				Double tempX = event.getX();
 				Integer foundationNum;
 
 				// Transform the X value for this index to find the relevant foundation number.
-				// Get the different between the event's x and the first foundation's x, then
+				// Get the difference between the event's X and the first foundation's X, then
 				// find out how many "card spaces" over the click was to find which foundation
 				// was clicked
 				tempX = tempX - this.xLayout.get(foundationIndices.get(0));
@@ -149,12 +158,14 @@ public class GameController extends SuperController implements Initializable {
 				cardToMove = srcStack.peek();
 
 			}
-		} else { // Handle getting cards from the game board in here
-					// Store the X to manipulate
+		} else { 
+			
+			// Handle getting cards from the game board in here
+			// Store the X to manipulate
 			Double tempX = event.getX();
 
 			// Calculate which stack to grab cards from. This is similar to the math done to
-			// figure out the foundation nubmer above
+			// figure out the foundation number above
 			tempX = tempX / (cardWidth + 15);
 			Integer stackNum = ((Double) Math.floor(tempX)).intValue();
 			srcStack = currentGame.getAPlayArea(stackNum);
@@ -169,11 +180,14 @@ public class GameController extends SuperController implements Initializable {
 			// If the user clicked on the last card on the stack, set it as the cardToMove
 			if (tempY > startOfLastCard && tempY < bottomOfStack) {
 				cardToMove = srcStack.peek();
-			} else if (tempY < startOfLastCard) { // If the user clicked somewhere above that, then figure where in the
-													// stack they clicked
+			} else if (tempY < startOfLastCard) {
+				
+				// If the user clicked somewhere above that, then figure where in the
+				// stack they clicked
 				int i = 0;
 				Integer index = ((Double) Math.floor(((startOfLastCard - tempY) / cardYOffset))).intValue() + 1;
 				Card currentCard = srcStack.peek();
+				
 				// Since the stack doesn't support getting a card from a particular index,
 				// iterate through until you get to the proper number. Once the card has been
 				// found, set it as the card to move
@@ -189,7 +203,7 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/*
-	 * allows player to move a selected card to a location
+	 * allows player to move a selected card to a desired location
 	 * 
 	 * @param event
 	 */
@@ -201,7 +215,7 @@ public class GameController extends SuperController implements Initializable {
 	/**
 	 * @param event
 	 */
-	// draws cards from pile in top left of screen
+	// draws cards from pile in the top left of the screen
 	@FXML
 	void Draw(ActionEvent event) {
 
@@ -219,29 +233,31 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/**
-	 * Sets up the the needed values to initially draw the game. First, the size fo
+	 * Sets up the needed values to initially draw the game. First, the size for
 	 * the gameCanvas is bound to the size of the containing pane, with listeners
 	 * added to update card size values whenever they are changed. Then initial
-	 * values are specified for card sizes, and arrays to store x and y values for
+	 * values are specified for card sizes, and arrays to store the X and Y values for
 	 * the layout are initialized
 	 */
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		// gamePane.setPrefWidth(900);
 		// gamePane.setPrefHeight(650);
-
 		gameCanvas.widthProperty().bind(gamePane.widthProperty());
 		gameCanvas.heightProperty().bind(gamePane.heightProperty());
 		gameCanvas.widthProperty().addListener(evt -> updateValues());
 		gameCanvas.heightProperty().addListener(evt -> updateValues());
+		
 		// Set variables for the card height and width, with padding
 		cardHeight = (double) 90;
 		cardWidth = (double) 70;
 		cardYOffset = 20;
 		xMargin = 15;
 		yMargin = 20;
-		// Set the x and y values for the start of each card row & column
+		
+		// Set the X and Y values for the start of each card row & column
 		xLayout = new ArrayList<Double>();
 		for (int i = 0; i < 7; i++) {
 			xLayout.add(i * (cardWidth + xMargin));
@@ -290,10 +306,12 @@ public class GameController extends SuperController implements Initializable {
 	 */
 
 	public void drawCards() {
+		
 		// Clear the entire canvas, so we don't get any duplicate cards
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
 		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 		if (this.currentGame != null) {
+			
 			// Draw the whole table for the game
 			drawTop(this.currentGame);
 			drawStacks(this.currentGame);
@@ -305,16 +323,16 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/**
-	 * Draws the draw and draw discard piles on screen. Normally called by
+	 * Draws the draw and draw discard piles on the screen. Normally called by
 	 * drawCards, passing the currentGame that belongs to the class.
 	 * 
-	 * @param runningGame The game to draw on the screen
+	 * @param runningGame (The game to draw on the screen)
 	 */
 
 	public void drawTop(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 
-		// Get the drawStack from the current game, along with current X and Y offsets
+		// Get the drawStack from the current game, along with the current X and Y offsets
 		Deque<Card> drawStack = runningGame.getDraw();
 		Double currentX = xLayout.get(0);
 		Double currentY = yLayout.get(0);
@@ -349,18 +367,21 @@ public class GameController extends SuperController implements Initializable {
 	 * called from drawCards, which passes the currentGame belonging to the class as
 	 * an argument
 	 * 
-	 * @param runningGame The game to draw on the screen
+	 * @param runningGame (The game to draw on the screen)
 	 */
 	public void drawStacks(Game runningGame) {
 		GraphicsContext currentGC = gameCanvas.getGraphicsContext2D();
 		Double currentX;
 		Double currentY;
+		
 		// Put the foundation stack and populate accordingly
 		for (int i = 0; i < 4; i++) {
-			// Get the current foundation stack and set the x and y coordinates for it
+			
+			// Get the current foundation stack and set the X and Y coordinates for it
 			Deque<Card> FoundationStack = runningGame.getAFoundation(i);
 			currentX = xLayout.get(foundationIndices.get(i));
 			currentY = yLayout.get(0);
+			
 			// If the current foundation in the model isn't empty, draw the top card
 			if (!FoundationStack.isEmpty()) {
 				Card topCard = FoundationStack.peek();
@@ -369,28 +390,32 @@ public class GameController extends SuperController implements Initializable {
 							cardWidth, cardHeight);
 				}
 			} else {
+				
 				// If the current foundation stack is empty, then draw a rectangle
 				currentGC.strokeRoundRect(currentX, currentY, cardWidth, cardHeight, 10, 10);
 			}
 		}
 		// Populate stacks on the table
 		for (int i = 0; i < 7; i++) {
-			// Get the current stack number in the play area, along with the current x and y
+			
+			// Get the current stack number in the play area, along with the current X and Y
 			// coordinates for it
 			Deque<Card> currentStack = runningGame.getAPlayArea(i);
 			currentX = xLayout.get(i);
 			currentY = yLayout.get(1);
 
-			// Offset that handles cascading the Cards' y position
+			// Offset that handles cascading the Cards' Y position
 			int offset = 0;
+			
 			// Since the stack's top cards are the ones on top of the stack, draw the cards
 			// in reverse order
 			for (Iterator<Card> it = currentStack.descendingIterator(); it.hasNext();) {
+				
 				// Get the next card in the stack
 				Card someCard = it.next();
 
 				// Draw either the face of the card or the back, depending on whether that
-				// particular card is face up. Each card is drawn at the startY plus some
+				// particular card is face up. Each card is drawn at the start Y plus some
 				// offset, which is specified stored in the class itself. This way the first
 				// card gets drawn, then the second gets drawn some distance below, and so on,
 				// until all cards are drawn
@@ -417,21 +442,21 @@ public class GameController extends SuperController implements Initializable {
 	}
 
 	/**
-	 * @param appSettingsObject the appSettingsObject to set
+	 * @param appSettingsObject (the appSettingsObject to set)
 	 */
 	public void setAppSettingsObject(SolitaireSettings appSettingsObject) {
 		this.appSettingsObject = appSettingsObject;
 	}
 
 	/**
-	 * @return the currentGame
+	 * @return (the currentGame)
 	 */
 	public Game getCurrentGame() {
 		return currentGame;
 	}
 
 	/**
-	 * @param newGame The new Game to set currentGame to
+	 * @param newGame (The new Game to set currentGame to)
 	 */
 	public void setCurrentGame(Game newGame) {
 		this.currentGame = newGame;
