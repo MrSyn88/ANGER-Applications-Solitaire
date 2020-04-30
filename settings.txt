@@ -1,6 +1,9 @@
-19.25465838509316
-55.27950310559007
+0.0
+100.0
 55.590062111801245
 true
-true
-true
+false
+false
+resources\Backs\Red.png
+0
+0
